@@ -25,13 +25,15 @@ export function RunApplication(options: PluginOptions) {
     //  set up as well. Just create is as an injectable token here
     //  so other components/services can consume it.
     //
-    bootstrap(PluginComponent, [
-        HTTP_PROVIDERS,
-        { provide: Window, useValue: window },
-        { provide: PluginConfig, useValue: menuConfig },
-        { provide: ViewResolver, useClass: ViewResolverService},
-        [{provide: PLATFORM_PIPES, useValue: [TranslationPipe], multi:true}]
-    ]);
+    setTimeout(function () {
+        bootstrap(PluginComponent, [
+            HTTP_PROVIDERS,
+            { provide: Window, useValue: window },
+            { provide: PluginConfig, useValue: menuConfig },
+            { provide: ViewResolver, useClass: ViewResolverService},
+            [{provide: PLATFORM_PIPES, useValue: [TranslationPipe], multi:true}]
+        ]);
+    });
 }
 
 window['RunApplication'] = RunApplication;

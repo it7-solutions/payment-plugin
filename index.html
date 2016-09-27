@@ -18,8 +18,24 @@
             System.import('app')
                 .then(function (m) {
                     var options = {
-                        url: '/url',
                         mockAJAX: true,
+
+                        terms_conds_text: '',
+                        is_datatrans_only: '',
+                        datatrans_popup_data: '',
+                        payment_types: '',
+                        online_systems: '',
+                        reg_services: '',
+                        show_form: '',
+                        show_download_invoice_btn: '',
+                        show_download_receipt_btn: '',
+                        show_edit_invoice_btn: '',
+                        show_pay_btn: '',
+                        is_next_button_active: '',
+                        is_invoice: '',
+                        get_invoice_url: '',
+                        create_invoice_url: '',
+                        cancel_invoice_url: ''
                     };
                     m.RunApplication(options);
                 })

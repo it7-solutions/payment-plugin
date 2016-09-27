@@ -10,8 +10,8 @@ import {TranslationsService} from "../services/translations.service";
 })
 export class PluginComponent {
     constructor(
-        private config: PluginConfig
+        private pluginConfig: PluginConfig
     ) {
-        console.log('config', config);
+        console.log('pluginConfig', pluginConfig);
     }
 }
