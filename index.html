@@ -23,10 +23,19 @@
                         terms_conds_text: '',
                         is_datatrans_only: '',
                         datatrans_popup_data: '',
-                        payment_types: '',
-                        online_systems: '',
-                        reg_services: '',
-                        show_form: '',
+                        payment_types: {
+                            bank: "Bank transfer",
+                            cash: "Cash payment (on-site)",
+                            online: "Credit card (online payment)"
+                        },
+                        online_systems: {
+                            dt: "DataTrans",
+                            pp: "PayPal"
+                        },
+                        reg_services: [
+                            {id: "816", name: "22"}
+                        ],
+                        show_form: true,
                         show_download_invoice_btn: '',
                         show_download_receipt_btn: '',
                         show_edit_invoice_btn: '',

@@ -1,0 +1,37 @@
+<table width="100%" *ngIf="show_form">
+    <tr *ngIf="reg_services.length > 0">
+        <td>
+            <p>Reg services:</p>
+        </td>
+        <td>
+            <select name="reg_service_id">
+                <option value="" disabled>Please select one</option>
+                <option *ngFor="let key of reg_services" value="{{key.id}}">{{key.name}}</option>
+            </select>
+        </td>
+    </tr>
+    <tr *ngIf="(payment_types | json) != '{}'">
+        <td>
+            <p>Payment types:</p>
+        </td>
+        <td>
+            <select name="payment_type">
+                <option value="" disabled>Please select one</option>
+                <option *ngFor="let key of payment_types | keys" value="{{key.key}}">{{key.value}}</option>
+            </select>
+        </td>
+    </tr>
+    <tr *ngIf="(online_systems | json) != '{}'">
+        <td>
+            <p>Online systems:</p>
+        </td>
+        <td>
+            <select name="online_system">
+                <option value="" disabled>Please select one</option>
+                <option *ngFor="let key of online_systems | keys" value="{{key.key}}">{{key.value}}</option>
+            </select>
+
+        </td>
+    </tr>
+
+</table>
