@@ -24,6 +24,7 @@ export interface PluginOptions {
     show_reg_services: boolean;
     show_payment_types: boolean;
     show_online_systems: boolean;
+    show_online_systems_directly: boolean;
 }
 
 @Injectable()
@@ -51,6 +52,7 @@ export class PluginConfig {
     show_reg_services: boolean;
     show_payment_types: boolean;
     show_online_systems: boolean;
+    show_online_systems_directly: boolean;
 
     constructor(options:PluginOptions) {
         this.templatesBaseUrl = options.templatesBaseUrl;
@@ -76,5 +78,6 @@ export class PluginConfig {
         this.show_reg_services = options.show_reg_services;
         this.show_payment_types = options.show_payment_types;
         this.show_online_systems = options.show_online_systems;
+        this.show_online_systems_directly = options.show_online_systems_directly;
     }
 }

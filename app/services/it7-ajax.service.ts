@@ -53,29 +53,6 @@ export class It7AjaxService {
         return res.json().data;
     }
 
-    // public checkResponse(res: Response): any{
-    //     if(this.isJson(res)) {
-    //         var response = res.json();
-    //         if (response.error) {
-    //             this.err.fire('Server request error: ' + response.errorMessage);
-    //         }
-    //         return res.json().data;
-    //     } else {
-    //         console.log(res);
-    //         return res;
-    //     }
-    // }
-    //
-    // private isJson(str: any) {
-    //     console.log('check if json');
-    //     try {
-    //         JSON.parse(str);
-    //     } catch (e) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
     private handleError(error: any) {
         this.err.fire('Server connection error: ' + error);
         return Promise.reject(error.message || error);

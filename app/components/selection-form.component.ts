@@ -16,6 +16,7 @@ export class SelectionForm implements OnInit {
     show_reg_services: boolean;
     show_payment_types: boolean;
     show_online_systems: boolean;
+    show_online_systems_directly: boolean;
 
     info: SelectType = {
         reg_service: '',
@@ -36,6 +37,7 @@ export class SelectionForm implements OnInit {
         this.show_reg_services = _config.show_reg_services;
         this.show_payment_types = _config.show_payment_types;
         this.show_online_systems = _config.show_online_systems;
+        this.show_online_systems_directly = _config.show_online_systems_directly;
     }
 
     public getInvoiceCall() {
@@ -63,12 +65,19 @@ export class SelectionForm implements OnInit {
 
     private sendAjaxCallIfFormFalse() {
         console.log('form false');
-        this._dataManager.getInvoiceRequest({});
+        this._dataManager.getInvoiceRequest({})
+            .then(
+                data => {
+                    this.getData = data;
+                }
+            );
     }
 
     ngOnInit() {
         if(!this.show_form) {
             this.sendAjaxCallIfFormFalse();
+        } else if(this.show_form) {
+            console.log('show data');
         }
     }
 }
