@@ -4,7 +4,7 @@
             <p>Reg services:</p>
         </td>
         <td>
-            <select name="reg_service_id" [(ngModel)]="info.reg_service">
+            <select name="reg_service_id" [(ngModel)]="info.reg_service_id">
                 <option value="" disabled>Please select one</option>
                 <option *ngFor="let key of reg_services" value="{{key.id}}">{{key.name}}</option>
             </select>
@@ -21,7 +21,7 @@
             </select>
         </td>
     </tr>
-    <tr *ngIf="show_online_systems_directly && show_online_systems_directly && info.payment_type === 'online'">
+    <tr *ngIf="show_online_systems_directly || (show_online_systems && info.payment_type === 'online')">
         <td>
             <p>Online systems:</p>
         </td>

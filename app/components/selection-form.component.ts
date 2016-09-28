@@ -19,7 +19,7 @@ export class SelectionForm implements OnInit {
     show_online_systems_directly: boolean;
 
     info: SelectType = {
-        reg_service: '',
+        reg_service_id: '',
         payment_type: '',
         online_system: '',
     };
@@ -52,7 +52,7 @@ export class SelectionForm implements OnInit {
 
         this.fillForm(
             {
-                reg_service: '',
+                reg_service_id: '',
                 payment_type: '',
                 online_system: ''
             }
