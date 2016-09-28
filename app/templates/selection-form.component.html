@@ -1,5 +1,5 @@
 <table width="100%" *ngIf="show_form">
-    <tr *ngIf="reg_services.length > 0">
+    <tr *ngIf="show_reg_services">
         <td>
             <p>Reg services:</p>
         </td>
@@ -10,7 +10,7 @@
             </select>
         </td>
     </tr>
-    <tr *ngIf="(payment_types | json) != '{}'">
+    <tr *ngIf="show_payment_types">
         <td>
             <p>Payment types:</p>
         </td>
@@ -21,7 +21,7 @@
             </select>
         </td>
     </tr>
-    <tr *ngIf="(online_systems | json) != '{}'">
+    <tr *ngIf="show_online_systems">
         <td>
             <p>Online systems:</p>
         </td>
@@ -38,5 +38,12 @@
             <button (click)="getInvoiceCall()">Ok</button>
         </td>
     </tr>
+</table>
 
+<table>
+    <tr>
+        <td>
+            {{getData}}
+        </td>
+    </tr>
 </table>

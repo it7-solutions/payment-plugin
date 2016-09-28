@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Select} from "../models/select";
 import {PluginConfig} from "../services/plugin.config";
 import {SelectType} from "../models/select-type";
@@ -8,17 +8,22 @@ import {DataManagerService} from "../services/data-manager.service";
     selector: 'selection-form',
     templateUrl: 'app/templates/selection-form.component.html'
 })
-export class SelectionForm {
+export class SelectionForm implements OnInit {
     reg_services: Select[];
     payment_types: Select[];
     online_systems: Select[];
     show_form: boolean;
+    show_reg_services: boolean;
+    show_payment_types: boolean;
+    show_online_systems: boolean;
 
     info: SelectType = {
         reg_service: '',
         payment_type: '',
         online_system: '',
     };
+
+    getData: string;
 
     constructor(
         private _config: PluginConfig,
@@ -28,11 +33,20 @@ export class SelectionForm {
         this.payment_types = _config.payment_types;
         this.online_systems = _config.online_systems;
         this.show_form = _config.show_form;
+        this.show_reg_services = _config.show_reg_services;
+        this.show_payment_types = _config.show_payment_types;
+        this.show_online_systems = _config.show_online_systems;
     }
 
     public getInvoiceCall() {
         console.log('info', this.info);
-        this._dataManager.saveRequest(this.info);
+        this._dataManager.getInvoiceRequest(this.info)
+            .then(
+            data => {
+                this.getData = data;
+            }
+        );
+
 
         this.fillForm(
             {
@@ -43,8 +57,18 @@ export class SelectionForm {
         );
     }
 
-    fillForm(o: any) {
+    private fillForm(o: any) {
         Object.assign(this.info, o);
     }
 
+    private sendAjaxCallIfFormFalse() {
+        console.log('form false');
+        this._dataManager.getInvoiceRequest({});
+    }
+
+    ngOnInit() {
+        if(!this.show_form) {
+            this.sendAjaxCallIfFormFalse();
+        }
+    }
 }

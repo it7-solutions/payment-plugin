@@ -15,22 +15,21 @@ export class DataManagerService {
         private config: PluginConfig,
         private err: It7ErrorService,
         private it7Ajax: It7AjaxService,
-        private popupService:PopupService
+        private popupService: PopupService
     ){}
 
 
-    saveRequest(selection: Object){
-        console.log('save request1');
+    getInvoiceRequest(selection: Object){
+        console.log('save request');
         this.showLoading();
         selection = JSON.stringify(selection);
         console.log('new data', selection);
         return this.it7Ajax
             .post(this.config.get_invoice_url, {selection: selection})
             .then(
-                () => {
-                    this.hideLoading()
-                }
-            );
+                res => res,
+                this.hideLoading()
+            )
     }
 
     private showLoading(){
@@ -39,7 +38,8 @@ export class DataManagerService {
         this.popupService.showPopup(this.popup);
     }
 
-    private hideLoading(){
+    private hideLoading(): any{
+        console.log('hide loading');
         if(this.popup){
             this.popup.visible = false;
             this.popupService.showPopup(this.popup);

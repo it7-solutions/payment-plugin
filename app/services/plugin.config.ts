@@ -21,6 +21,9 @@ export interface PluginOptions {
     get_invoice_url: string;
     create_invoice_url: string;
     cancel_invoice_url: string;
+    show_reg_services: boolean;
+    show_payment_types: boolean;
+    show_online_systems: boolean;
 }
 
 @Injectable()
@@ -45,6 +48,9 @@ export class PluginConfig {
     get_invoice_url: string;
     create_invoice_url: string;
     cancel_invoice_url: string;
+    show_reg_services: boolean;
+    show_payment_types: boolean;
+    show_online_systems: boolean;
 
     constructor(options:PluginOptions) {
         this.templatesBaseUrl = options.templatesBaseUrl;
@@ -67,5 +73,8 @@ export class PluginConfig {
         this.get_invoice_url = options.get_invoice_url;
         this.create_invoice_url = options.get_invoice_url;
         this.cancel_invoice_url = options.cancel_invoice_url;
+        this.show_reg_services = options.show_reg_services;
+        this.show_payment_types = options.show_payment_types;
+        this.show_online_systems = options.show_online_systems;
     }
 }
