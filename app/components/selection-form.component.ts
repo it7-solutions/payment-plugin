@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Select} from "../models/select";
 import {PluginConfig} from "../services/plugin.config";
 import {SelectType} from "../models/select-type";
+import {DataManagerService} from "../services/data-manager.service";
 
 @Component({
     selector: 'selection-form',
@@ -20,7 +21,8 @@ export class SelectionForm {
     };
 
     constructor(
-        private _config: PluginConfig
+        private _config: PluginConfig,
+        private _dataManager: DataManagerService
     ) {
         this.reg_services = _config.reg_services;
         this.payment_types = _config.payment_types;
@@ -30,6 +32,7 @@ export class SelectionForm {
 
     public getInvoiceCall() {
         console.log('info', this.info);
+        this._dataManager.saveRequest(this.info);
 
         this.fillForm(
             {
