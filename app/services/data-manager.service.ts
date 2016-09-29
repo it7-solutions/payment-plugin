@@ -27,8 +27,22 @@ export class DataManagerService {
         return this.it7Ajax
             .post(this.config.get_invoice_url, {selection: selection})
             .then(
-                res => res,
-                this.hideLoading()
+                res => {
+                    this.hideLoading();
+                    return res;
+                }
+            )
+    }
+
+    cancelInvoiceRequest() {
+        console.log('cancel invoice');
+        this.showLoading();
+        return this.it7Ajax
+            .post(this.config.cancel_invoice_url, {})
+            .then(
+                () => {
+                    this.hideLoading();
+                }
             )
     }
 

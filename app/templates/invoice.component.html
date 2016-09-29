@@ -2,7 +2,10 @@
     <tr>
         <td>{{invoiceData}}</td>
     </tr>
-    <tr *ngIf="show_form">
-        <button (click)='onShowFrom()'>EDIT</button>
+    <tr>
+        <td>
+            <button *ngIf="show_form" (click)='onShowFrom()'>EDIT</button>
+            <button *ngIf="show_edit_invoice_btn" (click)="onCancelInvoice()">Cancel Invoice</button>
+        </td>
     </tr>
 </table>
