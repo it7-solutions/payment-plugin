@@ -11,6 +11,7 @@ import {PopupService} from "./popup.service";
 @Injectable()
 export class DataManagerService {
     private popup: BusyPopup;
+    private selectedData: any;
     constructor(
         private config: PluginConfig,
         private err: It7ErrorService,
@@ -24,6 +25,7 @@ export class DataManagerService {
         this.showLoading();
         selection = JSON.stringify(selection);
         console.log('new data', selection);
+        this.selectedData = selection;
         return this.it7Ajax
             .post(this.config.get_invoice_url, {selection: selection})
             .then(
@@ -39,6 +41,18 @@ export class DataManagerService {
         this.showLoading();
         return this.it7Ajax
             .post(this.config.cancel_invoice_url, {})
+            .then(
+                () => {
+                    this.hideLoading();
+                }
+            )
+    }
+
+    validateInvoiceRequest() {
+        console.log('validate invoice');
+        this.showLoading();
+        return this.it7Ajax
+            .post(this.config.create_invoice_url, {selection: this.selectedData})
             .then(
                 () => {
                     this.hideLoading();

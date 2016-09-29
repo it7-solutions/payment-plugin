@@ -1,11 +1,12 @@
 <table width="100%">
     <tr>
-        <td>{{invoiceData}}</td>
+        <td [innerHTML]="invoiceData"></td>
     </tr>
     <tr>
         <td>
             <button *ngIf="show_form" (click)='onShowFrom()'>EDIT</button>
             <button *ngIf="show_edit_invoice_btn" (click)="onCancelInvoice()">Cancel Invoice</button>
+            <button *ngIf="is_invoice" (click)="onValidateInvoice()">Validate</button>
         </td>
     </tr>
 </table>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
 import {Select} from "../models/select";
 import {PluginConfig} from "../services/plugin.config";
 import {SelectType} from "../models/select-type";
@@ -30,7 +30,6 @@ export class SelectionForm implements OnInit {
 
     getDataInvoice: string;
     showDataInvoice: boolean = false;
-    // childTitle: string = 'This text is passed to child';
 
     constructor(
         private _config: PluginConfig,
