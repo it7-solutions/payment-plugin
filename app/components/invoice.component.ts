@@ -15,6 +15,8 @@ export class InvoiceComponent {
     show_edit_invoice_btn: boolean;
     is_invoice: boolean;
 
+    flagForValidate: boolean;
+
     constructor(
         private _config: PluginConfig,
         private _dataManager: DataManagerService
@@ -22,6 +24,10 @@ export class InvoiceComponent {
         this.show_form = _config.show_form;
         this.show_edit_invoice_btn = _config.show_edit_invoice_btn;
         this.is_invoice = _config.is_invoice;
+    }
+
+    changeFlag() {
+        this.flagForValidate = !this.flagForValidate;
     }
 
     onShowFrom() {

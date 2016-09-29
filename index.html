@@ -18,7 +18,7 @@
             System.import('app')
                 .then(function (m) {
                     var options = {
-                        mockAJAX: true,
+                        mockAJAX: false,
 
                         terms_conds_text: '',
                         is_datatrans_only: '',
@@ -41,7 +41,7 @@
                         show_edit_invoice_btn: true,
                         show_pay_btn: true,
                         is_next_button_active: true,
-                        is_invoice: true,
+                        is_invoice: false,
                         get_invoice_url: '/getInvoice',
                         create_invoice_url: '/createInvoice',
                         cancel_invoice_url: '/cancelInvoice',

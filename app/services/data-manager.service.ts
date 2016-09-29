@@ -11,7 +11,7 @@ import {PopupService} from "./popup.service";
 @Injectable()
 export class DataManagerService {
     private popup: BusyPopup;
-    private selectedData: any;
+    private selectedData: any = {};
     constructor(
         private config: PluginConfig,
         private err: It7ErrorService,
@@ -23,9 +23,9 @@ export class DataManagerService {
     getInvoiceRequest(selection: Object){
         console.log('save request');
         this.showLoading();
+        this.selectedData = JSON.stringify(Object.assign({}, selection, {"terms_accept": 1}));
         selection = JSON.stringify(selection);
         console.log('new data', selection);
-        this.selectedData = selection;
         return this.it7Ajax
             .post(this.config.get_invoice_url, {selection: selection})
             .then(

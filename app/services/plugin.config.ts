@@ -6,8 +6,6 @@ export interface PluginOptions {
     onTranslate?: (code:string, text: string) => any;
     translations: any[];
     terms_conds_text: string;
-    is_datatrans_only: boolean;
-    datatrans_popup_data: any[];
     payment_types: any[];
     online_systems: any[];
     reg_services: any[];
@@ -25,6 +23,7 @@ export interface PluginOptions {
     show_payment_types: boolean;
     show_online_systems: boolean;
     show_online_systems_directly: boolean;
+    chosen_online_system: string;
 }
 
 @Injectable()
@@ -34,8 +33,6 @@ export class PluginConfig {
     onTranslate: (code:string, text: string) => any;
     translations: any[];
     terms_conds_text: string;
-    is_datatrans_only: boolean;
-    datatrans_popup_data: any[];
     payment_types: any[];
     online_systems: any[];
     reg_services: any[];
@@ -53,6 +50,7 @@ export class PluginConfig {
     show_payment_types: boolean;
     show_online_systems: boolean;
     show_online_systems_directly: boolean;
+    chosen_online_system: string;
 
     constructor(options:PluginOptions) {
         this.templatesBaseUrl = options.templatesBaseUrl;
@@ -60,8 +58,6 @@ export class PluginConfig {
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
         this.translations = options.translations;
         this.terms_conds_text = options.terms_conds_text;
-        this.is_datatrans_only = options.is_datatrans_only;
-        this.datatrans_popup_data = options.datatrans_popup_data;
         this.payment_types = options.payment_types;
         this.online_systems = options.online_systems;
         this.reg_services = options.reg_services;
@@ -79,5 +75,6 @@ export class PluginConfig {
         this.show_payment_types = options.show_payment_types;
         this.show_online_systems = options.show_online_systems;
         this.show_online_systems_directly = options.show_online_systems_directly;
+        this.chosen_online_system = options.chosen_online_system;
     }
 }
