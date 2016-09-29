@@ -3,10 +3,14 @@ import {Select} from "../models/select";
 import {PluginConfig} from "../services/plugin.config";
 import {SelectType} from "../models/select-type";
 import {DataManagerService} from "../services/data-manager.service";
+import {InvoiceComponent} from "./invoice.component";
 
 @Component({
     selector: 'selection-form',
-    templateUrl: 'app/templates/selection-form.component.html'
+    templateUrl: 'app/templates/selection-form.component.html',
+    directives: [
+        InvoiceComponent
+    ]
 })
 export class SelectionForm implements OnInit {
     reg_services: Select[];
@@ -24,7 +28,9 @@ export class SelectionForm implements OnInit {
         online_system: '',
     };
 
-    getData: string;
+    getDataInvoice: string;
+    showDataInvoice: boolean = false;
+    // childTitle: string = 'This text is passed to child';
 
     constructor(
         private _config: PluginConfig,
@@ -45,7 +51,8 @@ export class SelectionForm implements OnInit {
         this._dataManager.getInvoiceRequest(this.info)
             .then(
             data => {
-                this.getData = data;
+                this.getDataInvoice = data;
+                this.showDataInvoice = true;
             }
         );
 
@@ -68,7 +75,8 @@ export class SelectionForm implements OnInit {
         this._dataManager.getInvoiceRequest({})
             .then(
                 data => {
-                    this.getData = data;
+                    this.getDataInvoice = data;
+                    this.showDataInvoice = true;
                 }
             );
     }
@@ -79,5 +87,9 @@ export class SelectionForm implements OnInit {
         } else if(this.show_form) {
             console.log('show data');
         }
+    }
+
+    onNotifyToShowForm():void {
+        this.showDataInvoice = false;
     }
 }

@@ -1,4 +1,4 @@
-<table width="100%" *ngIf="show_form">
+<table width="100%" *ngIf="show_form && !showDataInvoice">
     <tr *ngIf="show_reg_services">
         <td>
             <p>Reg services:</p>
@@ -40,10 +40,4 @@
     </tr>
 </table>
 
-<table>
-    <tr>
-        <td>
-            {{getData}}
-        </td>
-    </tr>
-</table>
+<invoice *ngIf="showDataInvoice" [invoiceData]='getDataInvoice' (notify)='onNotifyToShowForm($event)'></invoice>
