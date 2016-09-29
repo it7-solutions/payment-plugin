@@ -4,19 +4,27 @@
             <div [innerHTML]="invoiceData"></div>
         </td>
     </tr>
-    <tr>
+    <tr *ngIf="showTerms">
         <td>
             <div *ngIf="!is_invoice">
                 <input type="checkbox" (change)="changeFlag()">
                 <label>
-                    <a href="#" (click)="onShowTermsPopUp($event)">I accept the Payment Terms and Conditions</a>
+                    <a (click)="onShowTermsPopUp($event)">I accept the Payment Terms and Conditions</a>
                 </label>
             </div>
         </td>
         <td align="right">
-            <button *ngIf="show_form" (click)='onShowFrom()'>Edit</button>
+            <button *ngIf="show_form" (click)="onShowForm()">Edit</button>
             <button *ngIf="show_edit_invoice_btn" (click)="onCancelInvoice()">Cancel Invoice</button>
             <button *ngIf="!is_invoice" (click)="onValidateInvoice()" [disabled]="!flagForValidate">Validate</button>
+        </td>
+    </tr>
+    <tr *ngIf="showInvoiceReceiptPayButtons">
+        <td>
+            <button (click)="toInvoice()">Invoice</button>
+            <button (click)="toReceipt()">Receipt</button>
+            <button (click)="onShowForm()">Edit</button>
+            <button (click)="toPay()">PAY</button>
         </td>
     </tr>
 </table>

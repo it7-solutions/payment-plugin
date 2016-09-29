@@ -18,6 +18,8 @@ export class InvoiceComponent {
     is_invoice: boolean;
 
     flagForValidate: boolean;
+    showTerms: boolean = true;
+    showInvoiceReceiptPayButtons = false;
 
     constructor(
         private _config: PluginConfig,
@@ -33,18 +35,19 @@ export class InvoiceComponent {
         this.flagForValidate = !this.flagForValidate;
     }
 
-    onShowFrom() {
+    onShowForm() {
         this.notify.emit(true);
     }
 
     onCancelInvoice() {
         this._dataManager.cancelInvoiceRequest();
-        this.onShowFrom();
+        this.onShowForm();
     }
 
     onValidateInvoice() {
         this._dataManager.validateInvoiceRequest();
-        this.onShowFrom();
+        this.showTerms = false;
+        this.showInvoiceReceiptPayButtons = true;
     }
 
     onShowTermsPopUp(event: any) {
@@ -53,4 +56,17 @@ export class InvoiceComponent {
         var popup = new ConfirmPopup('');
         this._requestPopupService.showPopup(popup);
     }
+
+    toInvoice() {
+        console.log('invoice');
+    }
+
+    toReceipt() {
+        console.log('receipt')
+    }
+
+    toPay() {
+        console.log('pay');
+    }
+
 }
