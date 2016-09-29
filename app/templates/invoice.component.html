@@ -9,7 +9,7 @@
             <div *ngIf="!is_invoice">
                 <input type="checkbox" (change)="changeFlag()">
                 <label>
-                    <a>I accept the Payment Terms and Conditions</a>
+                    <a href="#" (click)="onShowTermsPopUp($event)">I accept the Payment Terms and Conditions</a>
                 </label>
             </div>
         </td>

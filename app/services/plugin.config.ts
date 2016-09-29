@@ -69,7 +69,7 @@ export class PluginConfig {
         this.is_next_button_active = options.is_next_button_active;
         this.is_invoice = options.is_invoice;
         this.get_invoice_url = options.get_invoice_url;
-        this.create_invoice_url = options.get_invoice_url;
+        this.create_invoice_url = options.create_invoice_url;
         this.cancel_invoice_url = options.cancel_invoice_url;
         this.show_reg_services = options.show_reg_services;
         this.show_payment_types = options.show_payment_types;

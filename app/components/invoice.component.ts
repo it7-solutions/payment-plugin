@@ -2,6 +2,8 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {PluginConfig} from "../services/plugin.config";
 import {DataManagerService} from "../services/data-manager.service";
 import any = jasmine.any;
+import {ConfirmPopup} from "./information-popup.component";
+import {PopupService} from "../services/popup.service";
 
 @Component({
     selector: 'invoice',
@@ -19,7 +21,8 @@ export class InvoiceComponent {
 
     constructor(
         private _config: PluginConfig,
-        private _dataManager: DataManagerService
+        private _dataManager: DataManagerService,
+        private _requestPopupService: PopupService
     ) {
         this.show_form = _config.show_form;
         this.show_edit_invoice_btn = _config.show_edit_invoice_btn;
@@ -42,5 +45,12 @@ export class InvoiceComponent {
     onValidateInvoice() {
         this._dataManager.validateInvoiceRequest();
         this.onShowFrom();
+    }
+
+    onShowTermsPopUp(event: any) {
+        console.log('show popup');
+        event.stopPropagation();
+        var popup = new ConfirmPopup('');
+        this._requestPopupService.showPopup(popup);
     }
 }
