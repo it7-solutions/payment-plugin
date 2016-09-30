@@ -47,6 +47,7 @@ export class InvoiceComponent {
 
     onCancelInvoice() {
         this._dataManager.cancelInvoiceRequest();
+        console.log('config', this._config);
         this.onShowForm();
     }
 
@@ -54,6 +55,7 @@ export class InvoiceComponent {
         this._dataManager.validateInvoiceRequest();
         this.showTerms = false;
         this.showInvoiceReceiptPayButtons = true;
+        console.log('config', this._config);
     }
 
     onShowTermsPopUp(event: any) {
@@ -65,10 +67,12 @@ export class InvoiceComponent {
 
     toInvoice() {
         console.log('invoice');
+        window.location.href = this._config.download_invoice_url;
     }
 
     toReceipt() {
-        console.log('receipt')
+        console.log('receipt');
+        window.location.href =this._config.download_receipt_url;
     }
 
     toPay() {
