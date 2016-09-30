@@ -32,6 +32,7 @@ export interface PluginOptions {
     chosen_payment_type: string;
     chosen_reg_service_id: string;
     pay_btn_url: string;
+    base_layout_id: number;
 }
 
 @Injectable()
@@ -66,6 +67,7 @@ export class PluginConfig {
     chosen_payment_type: string;
     chosen_reg_service_id: string;
     pay_btn_url: string;
+    base_layout_id: number;
 
     private _onUpdate: BehaviorSubject<PluginConfig>;
     public onUpdate: Observable<PluginConfig>;
@@ -109,6 +111,7 @@ export class PluginConfig {
         undefined === options.chosen_payment_type || (this.chosen_payment_type = options.chosen_payment_type);
         undefined === options.chosen_reg_service_id || (this.chosen_reg_service_id = options.chosen_reg_service_id);
         undefined === options.pay_btn_url || (this.pay_btn_url = options.pay_btn_url);
+        undefined === options.base_layout_id || (this.base_layout_id = options.base_layout_id);
 
         this._onUpdate.next(this);
     }

@@ -66,12 +66,12 @@ export class InvoiceComponent{
 
     toInvoice() {
         console.log('invoice');
-        window.location.href = this._config.download_invoice_url;
+        window.open(this._config.download_invoice_url, '_blank');
     }
 
     toReceipt() {
         console.log('receipt');
-        window.location.href =this._config.download_receipt_url;
+        window.open(this._config.download_receipt_url, '_blank');
     }
 
     toPay() {
@@ -80,7 +80,7 @@ export class InvoiceComponent{
         var url = this._config.pay_btn_url;
         if(os == 'pp'){
             console.log('paypal');
-            window.location.href = url;
+            window.location.href = url + '/layout_id/'+this._config.base_layout_id;
         } else if(os == 'dt') {
             console.log('datatrans');
 
