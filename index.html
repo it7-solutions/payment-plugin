@@ -35,6 +35,7 @@
                         reg_services: [
                             {id: "816", name: "22"}
                         ],
+                        onlinePaymentConst: 'online',
                         show_form: true,
                         show_download_invoice_btn: true,
                         show_download_receipt_btn: true,
@@ -45,12 +46,15 @@
                         get_invoice_url: '/getInvoice',
                         create_invoice_url: '/createInvoice',
                         cancel_invoice_url: '/cancelInvoice',
-                        show_reg_services: true,
+                        show_reg_services: false,
                         show_payment_types: true,
                         show_online_systems: true,
-                        show_online_systems_directly: true,
+                        show_online_systems_directly: false,
                         download_invoice_url: '',
-                        download_receipt_url: ''
+                        download_receipt_url: '',
+                        chosen_online_system: 'dt',
+                        chosen_payment_type: 'online',
+                        chosen_reg_service_id: '816'
                     };
                     m.RunApplication(options);
                 })

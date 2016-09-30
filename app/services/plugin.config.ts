@@ -10,6 +10,7 @@ export interface PluginOptions {
     online_systems: any[];
     reg_services: any[];
     show_form: boolean;
+    onlinePaymentConst: string;
     show_download_invoice_btn: boolean;
     show_download_receipt_btn: boolean;
     show_edit_invoice_btn: boolean;
@@ -23,9 +24,11 @@ export interface PluginOptions {
     show_payment_types: boolean;
     show_online_systems: boolean;
     show_online_systems_directly: boolean;
-    chosen_online_system: string;
     download_invoice_url: string;
     download_receipt_url: string;
+    chosen_online_system: string;
+    chosen_payment_type: string;
+    chosen_reg_service_id: string;
 }
 
 @Injectable()
@@ -39,6 +42,7 @@ export class PluginConfig {
     online_systems: any[];
     reg_services: any[];
     show_form: boolean;
+    onlinePaymentConst: string;
     show_download_invoice_btn: boolean;
     show_download_receipt_btn: boolean;
     show_edit_invoice_btn: boolean;
@@ -52,9 +56,11 @@ export class PluginConfig {
     show_payment_types: boolean;
     show_online_systems: boolean;
     show_online_systems_directly: boolean;
-    chosen_online_system: string;
     download_invoice_url: string;
     download_receipt_url: string;
+    chosen_online_system: string;
+    chosen_payment_type: string;
+    chosen_reg_service_id: string;
 
     constructor(options:PluginOptions) {
         this.update(options);
@@ -71,6 +77,7 @@ export class PluginConfig {
         undefined === options.online_systems || (this.online_systems = options.online_systems);
         undefined === options.reg_services || (this.reg_services = options.reg_services);
         undefined === options.show_form || (this.show_form = options.show_form);
+        undefined === options.onlinePaymentConst || (this.onlinePaymentConst = options.onlinePaymentConst);
         undefined === options.show_download_invoice_btn || (this.show_download_invoice_btn = options.show_download_invoice_btn);
         undefined === options.show_download_receipt_btn || (this.show_download_receipt_btn = options.show_download_receipt_btn);
         undefined === options.show_edit_invoice_btn || (this.show_edit_invoice_btn = options.show_edit_invoice_btn);
@@ -84,8 +91,10 @@ export class PluginConfig {
         undefined === options.show_payment_types || (this.show_payment_types = options.show_payment_types);
         undefined === options.show_online_systems || (this.show_online_systems = options.show_online_systems);
         undefined === options.show_online_systems_directly || (this.show_online_systems_directly = options.show_online_systems_directly);
-        undefined === options.chosen_online_system || (this.chosen_online_system = options.chosen_online_system);
         undefined === options.download_invoice_url || (this.download_invoice_url = options.download_invoice_url);
         undefined === options.download_receipt_url || (this.download_receipt_url = options.download_receipt_url);
+        undefined === options.chosen_online_system || (this.chosen_online_system = options.chosen_online_system);
+        undefined === options.chosen_payment_type || (this.chosen_payment_type = options.chosen_payment_type);
+        undefined === options.chosen_reg_service_id || (this.chosen_reg_service_id = options.chosen_reg_service_id);
     }
 }

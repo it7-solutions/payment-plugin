@@ -4,7 +4,11 @@
             <p>Reg services:</p>
         </td>
         <td>
-            <select name="reg_service_id" [(ngModel)]="info.reg_service_id">
+            <div class="message-error" *ngIf="!validateFields.reg_service_id.isValid">{{validateFields.reg_service_id.messageText}}</div>
+            <select
+                name="reg_service_id"
+                [(ngModel)]="info.reg_service_id"
+                [ngClass]="{'error': !validateFields.reg_service_id.isValid, valid: validateFields.reg_service_id.isValid}">
                 <option value="" disabled>Please select one</option>
                 <option *ngFor="let key of reg_services" value="{{key.id}}">{{key.name}}</option>
             </select>
@@ -15,18 +19,26 @@
             <p>Payment types:</p>
         </td>
         <td>
-            <select name="payment_type" [(ngModel)]="info.payment_type">
+            <div class="message-error" *ngIf="!validateFields.payment_type.isValid">{{validateFields.payment_type.messageText}}</div>
+            <select
+                name="payment_type"
+                [(ngModel)]="info.payment_type"
+                [ngClass]="{'error': !validateFields.payment_type.isValid, valid: validateFields.payment_type.isValid}">
                 <option value="" disabled>Please select one</option>
                 <option *ngFor="let key of payment_types | keys" value="{{key.key}}">{{key.value}}</option>
             </select>
         </td>
     </tr>
-    <tr *ngIf="show_online_systems_directly || (show_online_systems && info.payment_type === 'online')">
+    <tr *ngIf="isOnlineSystemVisible()">
         <td>
             <p>Online systems:</p>
         </td>
         <td>
-            <select name="online_system" [(ngModel)]="info.online_system">
+            <div class="message-error" *ngIf="!validateFields.online_system.isValid">{{validateFields.online_system.messageText}}</div>
+            <select
+                name="online_system"
+                [(ngModel)]="info.online_system"
+                [ngClass]="{'error': !validateFields.online_system.isValid, valid: validateFields.online_system.isValid}">
                 <option value="" disabled>Please select one</option>
                 <option *ngFor="let key of online_systems | keys" value="{{key.key}}">{{key.value}}</option>
             </select>
@@ -39,5 +51,12 @@
         </td>
     </tr>
 </table>
-
+<style>
+    .error {
+        border: 1px solid red;
+    }
+    .message-error {
+        color: red;
+    }
+</style>
 <invoice *ngIf="showDataInvoice" [invoiceData]='getDataInvoice' (notify)='onNotifyToShowForm($event)'></invoice>
