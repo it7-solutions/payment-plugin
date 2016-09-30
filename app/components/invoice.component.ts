@@ -16,6 +16,9 @@ export class InvoiceComponent {
     show_form: boolean;
     show_edit_invoice_btn: boolean;
     is_invoice: boolean;
+    show_download_invoice_btn: boolean;
+    show_download_receipt_btn: boolean;
+    show_pay_btn: boolean;
 
     flagForValidate: boolean;
     showTerms: boolean = true;
@@ -29,6 +32,9 @@ export class InvoiceComponent {
         this.show_form = _config.show_form;
         this.show_edit_invoice_btn = _config.show_edit_invoice_btn;
         this.is_invoice = _config.is_invoice;
+        this.show_download_invoice_btn = _config.show_download_invoice_btn;
+        this.show_download_receipt_btn = _config.show_download_receipt_btn;
+        this.show_pay_btn = _config.show_pay_btn;
     }
 
     changeFlag() {
