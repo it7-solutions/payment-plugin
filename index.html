@@ -19,6 +19,9 @@
                 .then(function (m) {
                     var options = {
                         mockAJAX: true,
+                        onInit: function () {
+                            console.log('aaaa');
+                        },
 
                         terms_conds_text: 'Terms And Conditions',
                         is_datatrans_only: '',
@@ -54,7 +57,8 @@
                         download_receipt_url: '',
                         chosen_online_system: 'dt',
                         chosen_payment_type: 'online',
-                        chosen_reg_service_id: '816'
+                        chosen_reg_service_id: '816',
+                        pay_btn_url: ''
                     };
                     m.RunApplication(options);
                 })

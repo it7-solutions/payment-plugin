@@ -4,6 +4,7 @@
             <div [innerHTML]="invoiceData"></div>
         </td>
     </tr>
+
     <tr *ngIf="showTerms">
         <td>
             <div *ngIf="!is_invoice">
@@ -15,15 +16,18 @@
         </td>
         <td align="right">
             <button *ngIf="show_form" (click)="onShowForm()">Edit</button>
-            <button *ngIf="show_edit_invoice_btn" (click)="onCancelInvoice()">Cancel Invoice</button>
             <button *ngIf="!is_invoice" (click)="onValidateInvoice()" [disabled]="!flagForValidate">Validate</button>
         </td>
     </tr>
-    <tr *ngIf="showInvoiceReceiptPayButtons">
-        <td>
-            <button *ngIf="show_download_invoice_btn" (click)="toInvoice()">Invoice</button>
-            <button *ngIf="show_download_receipt_btn" (click)="toReceipt()">Receipt</button>
-            <button *ngIf="show_pay_btn" (click)="toPay()">PAY</button>
+
+    <tr>
+        <td >
+            <button *ngIf="_config.show_download_invoice_btn" (click)="toInvoice()">Invoice</button>
+            <button *ngIf="_config.show_download_receipt_btn" (click)="toReceipt()">Receipt</button>
+            <button *ngIf="_config.show_pay_btn" (click)="toPay()">PAY</button>
+        </td>
+        <td align="right">
+            <button *ngIf="_config.show_edit_invoice_btn" (click)="onCancelInvoice()">Cancel Invoice</button>
         </td>
     </tr>
 </table>

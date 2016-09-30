@@ -42,7 +42,8 @@ export class DataManagerService {
         return this.it7Ajax
             .post(this.config.cancel_invoice_url, {})
             .then(
-                () => {
+                (data) => {
+                    this.config.update(data);
                     this.hideLoading();
                 }
             )
@@ -54,7 +55,8 @@ export class DataManagerService {
         return this.it7Ajax
             .post(this.config.create_invoice_url, {selection: this.selectedData})
             .then(
-                () => {
+                (data) => {
+                    this.config.update(data);
                     this.hideLoading();
                 }
             )
@@ -75,3 +77,4 @@ export class DataManagerService {
         }
     }
 }
+

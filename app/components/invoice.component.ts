@@ -10,7 +10,7 @@ import {PopupService} from "../services/popup.service";
     templateUrl: 'app/templates/invoice.component.html',
     inputs: ['parentValue:passedValue'],
 })
-export class InvoiceComponent {
+export class InvoiceComponent{
     @Input() invoiceData: string;
     @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();
     show_form: boolean;
@@ -22,7 +22,6 @@ export class InvoiceComponent {
 
     flagForValidate: boolean;
     showTerms: boolean = true;
-    showInvoiceReceiptPayButtons = false;
 
     constructor(
         private _config: PluginConfig,
@@ -42,6 +41,7 @@ export class InvoiceComponent {
     }
 
     onShowForm() {
+        console.log('config', this._config);
         this.notify.emit(true);
     }
 
@@ -54,7 +54,6 @@ export class InvoiceComponent {
     onValidateInvoice() {
         this._dataManager.validateInvoiceRequest();
         this.showTerms = false;
-        this.showInvoiceReceiptPayButtons = true;
         console.log('config', this._config);
     }
 
@@ -77,6 +76,23 @@ export class InvoiceComponent {
 
     toPay() {
         console.log('pay');
+        var os = this._config.chosen_online_system;
+        var url = this._config.pay_btn_url;
+        if(os == 'pp'){
+            console.log('paypal');
+            window.location.href = url;
+        } else if(os == 'dt') {
+            console.log('datatrans');
+
+            this._config.onInit(url);
+
+
+        }
+
     }
+
+    // ngOnInit() {
+    //     this._config.onInit(() => {});
+    // }
 
 }

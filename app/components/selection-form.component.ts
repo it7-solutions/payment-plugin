@@ -26,7 +26,7 @@ export class SelectionForm implements OnInit {
     chosen_reg_service_id: string;
 
     info: SelectType = {
-        reg_service_id: this._config.chosen_reg_service_id,
+        reg_service_id: '',
         payment_type: '',
         online_system: '',
     };
@@ -50,6 +50,8 @@ export class SelectionForm implements OnInit {
         this.show_online_systems_directly = _config.show_online_systems_directly;
         this.onlinePaymentConst = _config.onlinePaymentConst;
         this.chosen_reg_service_id = _config.chosen_reg_service_id;
+        this.info.reg_service_id = this._config.chosen_reg_service_id;
+        this._config.onUpdate.subscribe(config => {this.info.reg_service_id = config.chosen_reg_service_id});
     }
 
     validateFields: {[key:string] : ValidateField} = {

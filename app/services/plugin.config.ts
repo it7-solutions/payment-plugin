@@ -1,8 +1,10 @@
 import {Injectable} from "@angular/core";
+import {BehaviorSubject, Observable} from "rxjs/Rx";
 
 export interface PluginOptions {
     templatesBaseUrl?: string;
     mockAJAX?: boolean;
+    onInit?: (callback: any) => any;
     onTranslate?: (code:string, text: string) => any;
     translations: any[];
     terms_conds_text: string;
@@ -29,12 +31,14 @@ export interface PluginOptions {
     chosen_online_system: string;
     chosen_payment_type: string;
     chosen_reg_service_id: string;
+    pay_btn_url: string;
 }
 
 @Injectable()
 export class PluginConfig {
     templatesBaseUrl: string;
     mockAJAX: boolean;
+    onInit: (callback: any) => any;
     onTranslate: (code:string, text: string) => any;
     translations: any[];
     terms_conds_text: string;
@@ -61,15 +65,23 @@ export class PluginConfig {
     chosen_online_system: string;
     chosen_payment_type: string;
     chosen_reg_service_id: string;
+    pay_btn_url: string;
+
+    private _onUpdate: BehaviorSubject<PluginConfig>;
+    public onUpdate: Observable<PluginConfig>;
 
     constructor(options:PluginOptions) {
+        this._onUpdate = new BehaviorSubject(this);
+        this.onUpdate = this._onUpdate.asObservable();
         this.update(options);
     }
 
 
     public update(options:PluginOptions) {
+        console.log('options show_edit_invoice_btn', options.show_edit_invoice_btn);
         this.templatesBaseUrl = options.templatesBaseUrl;
         this.mockAJAX = options.mockAJAX;
+        this.onInit = typeof options.onInit === 'function' ? options.onInit : () => {};
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
         this.translations = options.translations;
         undefined === options.terms_conds_text || (this.terms_conds_text = options.terms_conds_text);
@@ -96,5 +108,8 @@ export class PluginConfig {
         undefined === options.chosen_online_system || (this.chosen_online_system = options.chosen_online_system);
         undefined === options.chosen_payment_type || (this.chosen_payment_type = options.chosen_payment_type);
         undefined === options.chosen_reg_service_id || (this.chosen_reg_service_id = options.chosen_reg_service_id);
+        undefined === options.pay_btn_url || (this.pay_btn_url = options.pay_btn_url);
+
+        this._onUpdate.next(this);
     }
 }
