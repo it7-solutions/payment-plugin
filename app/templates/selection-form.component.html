@@ -5,7 +5,7 @@
         </td>
         <td>
             <div class="message-error" *ngIf="!validateFields.reg_service_id.isValid">{{validateFields.reg_service_id.messageText}}</div>
-            <select
+            <select #regService
                 name="reg_service_id"
                 [(ngModel)]="info.reg_service_id"
                 [ngClass]="{'error': !validateFields.reg_service_id.isValid, valid: validateFields.reg_service_id.isValid}">

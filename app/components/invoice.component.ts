@@ -43,6 +43,7 @@ export class InvoiceComponent{
     onShowForm() {
         console.log('config', this._config);
         this.notify.emit(true);
+        this._config.update(this._config);
     }
 
     onCancelInvoice() {
