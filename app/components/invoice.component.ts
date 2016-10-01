@@ -79,7 +79,6 @@ export class InvoiceComponent{
         var os = this._config.chosen_online_system;
         var url = this._config.pay_btn_url;
         if(os == 'pp'){
-            console.log('paypal');
             window.location.href = url + '/layout_id/'+this._config.base_layout_id;
         } else if(os == 'dt') {
             console.log('datatrans');
@@ -90,9 +89,5 @@ export class InvoiceComponent{
         }
 
     }
-
-    // ngOnInit() {
-    //     this._config.onInit(() => {});
-    // }
 
 }

@@ -83,7 +83,7 @@ export class PluginConfig {
         console.log('options show_edit_invoice_btn', options.show_edit_invoice_btn);
         this.templatesBaseUrl = options.templatesBaseUrl;
         this.mockAJAX = options.mockAJAX;
-        this.onInit = typeof options.onInit === 'function' ? options.onInit : () => {};
+        undefined === options.onInit || (this.onInit = typeof options.onInit === 'function' ? options.onInit : () => {});
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
         this.translations = options.translations;
         undefined === options.terms_conds_text || (this.terms_conds_text = options.terms_conds_text);
