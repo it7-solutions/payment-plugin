@@ -1,0 +1,34 @@
+<table width="100%">
+    <tr>
+        <td colspan="2">
+            <div [innerHTML]="invoiceData"></div>
+        </td>
+    </tr>
+
+    <tr *ngIf="showTerms">
+        <td>
+            <div *ngIf="!is_invoice">
+                <input type="checkbox" (change)="changeFlag()">
+                <label>
+                    <a (click)="onShowTermsPopUp($event)">I accept the Payment Terms and Conditions</a>
+                </label>
+            </div>
+        </td>
+        <td align="right">
+            <button *ngIf="show_form" (click)="onShowForm()">Edit</button>
+            <button *ngIf="!is_invoice" (click)="onValidateInvoice()" [disabled]="!flagForValidate">Validate</button>
+        </td>
+    </tr>
+</table>
+<table width="100%">
+    <tr>
+        <td>
+            <button *ngIf="_config.show_download_invoice_btn" (click)="toInvoice()">Invoice</button>
+            <button *ngIf="_config.show_download_receipt_btn" (click)="toReceipt()">Receipt</button>
+            <button *ngIf="_config.show_pay_btn" (click)="toPay()">PAY</button>
+        </td>
+        <td align="right">
+            <button *ngIf="_config.show_edit_invoice_btn" (click)="onCancelInvoice()">Cancel Invoice</button>
+        </td>
+    </tr>
+</table>

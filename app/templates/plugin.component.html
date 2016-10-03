@@ -1,4 +1,5 @@
 <h1>{{ 'Payment Plugin View' | translation }}</h1>
-<selection-form></selection-form>
 <busy-popup></busy-popup>
 <information-popup></information-popup>
+<selection-form *ngIf="isStep1A()" (formOkay)='onClickFormOkay($event)'></selection-form>
+<invoice *ngIf="isStep1B()" [invoiceData]='getDataInvoice' (showForm)='onNotifyToShowForm($event)'></invoice>

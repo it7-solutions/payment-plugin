@@ -28,7 +28,9 @@ export interface PluginOptions {
     chosen_online_system: string;
     chosen_payment_type: string;
     chosen_reg_service_id: string;
-    pay_btn_url: string;
+    view_step: string;
+    pay_btn_url_dt: string;
+    pay_btn_url_pp: string;
 }
 
 @Injectable()
@@ -59,7 +61,9 @@ export class PluginConfig {
     chosen_online_system: string;
     chosen_payment_type: string;
     chosen_reg_service_id: string;
-    pay_btn_url: string;
+    view_step: string;
+    pay_btn_url_dt: string;
+    pay_btn_url_pp: string;
 
     private _onUpdate: BehaviorSubject<PluginConfig>;
     public onUpdate: Observable<PluginConfig>;
@@ -99,7 +103,9 @@ export class PluginConfig {
         undefined === options.chosen_online_system || (this.chosen_online_system = options.chosen_online_system);
         undefined === options.chosen_payment_type || (this.chosen_payment_type = options.chosen_payment_type);
         undefined === options.chosen_reg_service_id || (this.chosen_reg_service_id = options.chosen_reg_service_id);
-        undefined === options.pay_btn_url || (this.pay_btn_url = options.pay_btn_url);
+        undefined === options.view_step || (this.view_step = options.view_step);
+        undefined === options.pay_btn_url_dt || (this.pay_btn_url_dt = options.pay_btn_url_dt);
+        undefined === options.pay_btn_url_pp || (this.pay_btn_url_pp = options.pay_btn_url_pp);
 
         this._onUpdate.next(this);
     }

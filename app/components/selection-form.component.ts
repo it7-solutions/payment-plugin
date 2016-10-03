@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {Select} from "../models/select";
 import {PluginConfig} from "../services/plugin.config";
 import {SelectType} from "../models/select-type";
-import {DataManagerService} from "../services/data-manager.service";
 import {InvoiceComponent} from "./invoice.component";
 import {ValidateField} from "../models/validate";
 
@@ -27,13 +26,15 @@ export class SelectionForm implements OnInit {
         payment_type: ''
     };
 
+    @Output() formOkay: EventEmitter<SelectType> = new EventEmitter<SelectType>();
+
+
     getDataInvoice: string;
     showDataInvoice: boolean = false;
     formValid: boolean = true;
 
     constructor(
-        private _config: PluginConfig,
-        private _dataManager: DataManagerService
+        private _config: PluginConfig
     ) {
         this.reg_services = _config.reg_services;
         this.payment_types = _config.payment_types;
@@ -105,15 +106,7 @@ export class SelectionForm implements OnInit {
         console.log('form', this.formValid);
 
         if(this.checkValid()) {
-
-            this._dataManager.getInvoiceRequest(this.info)
-                .then(
-                    data => {
-                        this.getDataInvoice = data;
-                        this.showDataInvoice = true;
-                    }
-                );
-
+            this.formOkay.emit(this.info);
 
             this.fillForm(
                 {
@@ -131,13 +124,7 @@ export class SelectionForm implements OnInit {
 
     private sendAjaxCallIfFormFalse() {
         console.log('form false');
-        this._dataManager.getInvoiceRequest({})
-            .then(
-                data => {
-                    this.getDataInvoice = data;
-                    this.showDataInvoice = true;
-                }
-            );
+        this.formOkay.emit(this.info);
     }
 
     ngOnInit() {
@@ -148,7 +135,5 @@ export class SelectionForm implements OnInit {
         }
     }
 
-    onNotifyToShowForm():void {
-        this.showDataInvoice = false;
-    }
+
 }
