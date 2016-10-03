@@ -29,11 +29,8 @@
                         payment_types: {
                             bank: "Bank transfer",
                             cash: "Cash payment (on-site)",
-                            online: "Credit card (online payment)"
-                        },
-                        online_systems: {
-                            dt: "DataTrans",
-                            pp: "PayPal"
+                            online: "Credit card (online payment)",
+                            online_dt: "Credit card (online payment) (DataTrans)"
                         },
                         reg_services: [
                             {id: "816", name: "22"}
@@ -51,15 +48,12 @@
                         cancel_invoice_url: '/cancelInvoice',
                         show_reg_services: false,
                         show_payment_types: true,
-                        show_online_systems: true,
-                        show_online_systems_directly: false,
                         download_invoice_url: '',
                         download_receipt_url: '',
                         chosen_online_system: 'dt',
                         chosen_payment_type: 'online',
                         chosen_reg_service_id: '816',
-                        pay_btn_url: '/payBtnUrl',
-                        base_layout_id: ''
+                        pay_btn_url: '/payBtnUrl'
                     };
                     m.RunApplication(options);
                 })

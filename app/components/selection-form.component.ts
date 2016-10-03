@@ -16,25 +16,20 @@ import {ValidateField} from "../models/validate";
 export class SelectionForm implements OnInit {
     reg_services: Select[];
     payment_types: Select[];
-    online_systems: Select[];
     show_form: boolean;
     show_reg_services: boolean;
     show_payment_types: boolean;
-    show_online_systems: boolean;
-    show_online_systems_directly: boolean;
     onlinePaymentConst: string;
     chosen_reg_service_id: string;
 
     info: SelectType = {
         reg_service_id: '',
-        payment_type: '',
-        online_system: '',
+        payment_type: ''
     };
 
     getDataInvoice: string;
     showDataInvoice: boolean = false;
     formValid: boolean = true;
-    showOnlineSystem: boolean = false;
 
     constructor(
         private _config: PluginConfig,
@@ -42,12 +37,9 @@ export class SelectionForm implements OnInit {
     ) {
         this.reg_services = _config.reg_services;
         this.payment_types = _config.payment_types;
-        this.online_systems = _config.online_systems;
         this.show_form = _config.show_form;
         this.show_reg_services = _config.show_reg_services;
         this.show_payment_types = _config.show_payment_types;
-        this.show_online_systems = _config.show_online_systems;
-        this.show_online_systems_directly = _config.show_online_systems_directly;
         this.onlinePaymentConst = _config.onlinePaymentConst;
         this.chosen_reg_service_id = _config.chosen_reg_service_id;
         this.info.reg_service_id = this._config.chosen_reg_service_id;
@@ -64,11 +56,6 @@ export class SelectionForm implements OnInit {
             isValid: true,
             messageText: '',
             isRequired: true,
-        },
-        online_system: {
-            isValid: true,
-            messageText: '',
-            isRequired: () => {return this.isOnlineSystemVisible()},
         }
     };
 
@@ -105,10 +92,6 @@ export class SelectionForm implements OnInit {
         return this.formValid;
     }
 
-    public isOnlineSystemVisible() {
-        return this.show_online_systems_directly || (this.show_online_systems && this.info.payment_type === this.onlinePaymentConst);
-    }
-
     onValidateFields() {
         this.setAllValid();
         this.checkRequired();
@@ -135,8 +118,7 @@ export class SelectionForm implements OnInit {
             this.fillForm(
                 {
                     reg_service_id: '',
-                    payment_type: '',
-                    online_system: ''
+                    payment_type: ''
                 }
             );
 

@@ -29,21 +29,6 @@
             </select>
         </td>
     </tr>
-    <tr *ngIf="isOnlineSystemVisible()">
-        <td>
-            <p>Online systems:</p>
-        </td>
-        <td>
-            <div class="message-error" *ngIf="!validateFields.online_system.isValid">{{validateFields.online_system.messageText}}</div>
-            <select
-                name="online_system"
-                [(ngModel)]="info.online_system"
-                [ngClass]="{'error': !validateFields.online_system.isValid, valid: validateFields.online_system.isValid}">
-                <option value="" disabled>Please select one</option>
-                <option *ngFor="let key of online_systems | keys" value="{{key.key}}">{{key.value}}</option>
-            </select>
-        </td>
-    </tr>
     <tr>
         <td></td>
         <td>
