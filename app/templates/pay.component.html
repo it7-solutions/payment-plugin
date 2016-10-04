@@ -1,7 +1,7 @@
 <table width="100%">
     <tr>
         <td colspan="2">
-            <div [innerHTML]="invoiceData"></div>
+            <div [innerHTML]="invoiceInformation"></div>
         </td>
     </tr>
 
@@ -28,7 +28,7 @@
             <button *ngIf="_config.show_pay_btn" (click)="toPay()">PAY</button>
         </td>
         <td align="right">
-            <button *ngIf="_config.show_edit_invoice_btn" (click)="onCancelInvoice()">Cancel Invoice</button>
+            <button *ngIf="_config.show_edit_invoice_btn" (click)="onCancelInvoice($event)">Cancel Invoice</button>
         </td>
     </tr>
 </table>

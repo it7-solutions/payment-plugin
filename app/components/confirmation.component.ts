@@ -1,38 +1,30 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {PluginConfig} from "../services/plugin.config";
-import {DataManagerService} from "../services/data-manager.service";
 import any = jasmine.any;
 import {ConfirmPopup} from "./information-popup.component";
 import {PopupService} from "../services/popup.service";
 
 @Component({
-    selector: 'invoice',
-    templateUrl: 'app/templates/invoice.component.html'
+    selector: 'confirmation',
+    templateUrl: 'app/templates/confirmation.component.html'
 })
-export class InvoiceComponent{
-    @Input() invoiceData: string;
+export class ConfirmationComponent{
+    @Input() invoiceInformation: string;
     @Output() showForm: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() showInvoiceButtons: EventEmitter<any> = new EventEmitter<any>();
     show_form: boolean;
     show_edit_invoice_btn: boolean;
     is_invoice: boolean;
-    // show_download_invoice_btn: boolean;
-    // show_download_receipt_btn: boolean;
-    // show_pay_btn: boolean;
 
     flagForValidate: boolean;
-    showTerms: boolean = true;
 
     constructor(
         private _config: PluginConfig,
-        private _dataManager: DataManagerService,
         private _requestPopupService: PopupService
     ) {
         this.show_form = _config.show_form;
         this.show_edit_invoice_btn = _config.show_edit_invoice_btn;
         this.is_invoice = _config.is_invoice;
-        // this.show_download_invoice_btn = _config.show_download_invoice_btn;
-        // this.show_download_receipt_btn = _config.show_download_receipt_btn;
-        // this.show_pay_btn = _config.show_pay_btn;
     }
 
     changeFlag() {
@@ -45,16 +37,8 @@ export class InvoiceComponent{
         this._config.update(this._config);
     }
 
-    onCancelInvoice() {
-        this._dataManager.cancelInvoiceRequest();
-        console.log('config', this._config);
-        this.onShowForm();
-    }
-
     onValidateInvoice() {
-        this._dataManager.validateInvoiceRequest();
-        this.showTerms = false;
-        console.log('config', this._config);
+        this.showInvoiceButtons.emit(true);
     }
 
     onShowTermsPopUp(event: any) {

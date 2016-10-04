@@ -2,14 +2,14 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {Select} from "../models/select";
 import {PluginConfig} from "../services/plugin.config";
 import {SelectType} from "../models/select-type";
-import {InvoiceComponent} from "./invoice.component";
+import {ConfirmationComponent} from "./confirmation.component";
 import {ValidateField} from "../models/validate";
 
 @Component({
     selector: 'selection-form',
     templateUrl: 'app/templates/selection-form.component.html',
     directives: [
-        InvoiceComponent
+        ConfirmationComponent
     ]
 })
 export class SelectionForm implements OnInit {
@@ -29,7 +29,6 @@ export class SelectionForm implements OnInit {
     @Output() formOkay: EventEmitter<SelectType> = new EventEmitter<SelectType>();
 
 
-    getDataInvoice: string;
     showDataInvoice: boolean = false;
     formValid: boolean = true;
 

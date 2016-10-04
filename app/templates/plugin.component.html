@@ -2,4 +2,5 @@
 <busy-popup></busy-popup>
 <information-popup></information-popup>
 <selection-form *ngIf="isStep1A()" (formOkay)='onClickFormOkay($event)'></selection-form>
-<invoice *ngIf="isStep1B()" [invoiceData]='getDataInvoice' (showForm)='onNotifyToShowForm($event)'></invoice>
+<confirmation *ngIf="isStep1B()" [invoiceInformation]="invoiceInformation" (showForm)='onNotifyToShowForm($event)' (showInvoiceButtons)="onShowStep2($event)"></confirmation>
+<pay *ngIf="isStep2()" [invoiceInformation]="invoiceInformation" (cancelInvoice)="onCancelInvoice()"></pay>

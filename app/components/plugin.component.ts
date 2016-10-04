@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {PluginConfig} from "../services/plugin.config";
 import {TranslationsService} from "../services/translations.service";
 import {SelectionForm} from "./selection-form.component";
@@ -8,9 +8,9 @@ import {It7AjaxService} from "../services/it7-ajax.service";
 import {PopupService} from "../services/popup.service";
 import {BusyPopupComponent} from "./busy-popup.component";
 import {InformationPopupComponent} from "./information-popup.component";
-import {InvoiceComponent} from "./invoice.component";
+import {ConfirmationComponent} from "./confirmation.component";
 import {SelectType} from "../models/select-type";
-import {InvoiceButtonsComponent} from "./invoice-buttons.component";
+import {PayComponent} from "./pay.component";
 @Component({
     selector: 'it7-payment-public-plugin',
     templateUrl: 'app/templates/plugin.component.html',
@@ -18,8 +18,8 @@ import {InvoiceButtonsComponent} from "./invoice-buttons.component";
         SelectionForm,
         BusyPopupComponent,
         InformationPopupComponent,
-        InvoiceComponent,
-        InvoiceButtonsComponent
+        ConfirmationComponent,
+        PayComponent
     ],
     providers: [
         DataManagerService,
@@ -29,9 +29,9 @@ import {InvoiceButtonsComponent} from "./invoice-buttons.component";
         PopupService
     ]
 })
-export class PluginComponent {
+export class PluginComponent implements OnInit{
     private info: SelectType;
-    getDataInvoice: string;
+    invoiceInformation: string;
     showStep1A: boolean = true;
     showStep1B: boolean = false;
 
@@ -72,13 +72,43 @@ export class PluginComponent {
         this.pluginConfig.view_step = '1a';
     }
 
+    onShowStep2(): void {
+        this._dataManager.validateInvoiceRequest();
+        this.pluginConfig.view_step = '2';
+    }
+
     private getAjaxDataForStep1B() {
         this._dataManager.getInvoiceRequest(this.info)
             .then(
                 data => {
-                    this.getDataInvoice = data;
+                    this.invoiceInformation = data;
                     this.pluginConfig.view_step = '1b';
                 }
             );
+    }
+
+    private getAjaxDataForStep2() {
+        var info = {
+            reg_service_id: this.pluginConfig.chosen_reg_service_id,
+            payment_type: ''
+        };
+        this._dataManager.getInvoiceRequest(info)
+            .then(
+                data => {
+                    this.invoiceInformation = data;
+                    this.pluginConfig.view_step = '2';
+                }
+            );
+    }
+
+    onCancelInvoice() {
+        this._dataManager.cancelInvoiceRequest();
+        this.pluginConfig.view_step = '1a';
+    }
+
+    ngOnInit() {
+        if('2' === this.pluginConfig.view_step) {
+            this.getAjaxDataForStep2();
+        }
     }
 }

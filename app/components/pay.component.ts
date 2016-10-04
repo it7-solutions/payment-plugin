@@ -1,11 +1,12 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {PluginConfig} from "../services/plugin.config";
 @Component({
-    selector: 'invoice-buttons',
-    templateUrl: 'app/templates/invoice-buttons.component.html'
+    selector: 'pay',
+    templateUrl: 'app/templates/pay.component.html'
 })
-export class InvoiceButtonsComponent {
-    @Output() validate: EventEmitter<string> = new EventEmitter<string>();
+export class PayComponent {
+    @Output() cancelInvoice: EventEmitter<any> = new EventEmitter<any>();
+    @Input() invoiceInformation: string;
     show_download_invoice_btn: boolean;
     show_download_receipt_btn: boolean;
     show_pay_btn: boolean;
@@ -28,6 +29,10 @@ export class InvoiceButtonsComponent {
         window.open(this._config.download_receipt_url, '_blank');
     }
 
+    onCancelInvoice() {
+        this.cancelInvoice.emit(true);
+    }
+
     toPay() {
         console.log('pay');
         var os = this._config.chosen_online_system;
@@ -35,7 +40,7 @@ export class InvoiceButtonsComponent {
             window.location.href = this._config.pay_btn_url_pp;
         } else if(os == 'dt') {
             console.log('datatrans');
-            this._config.onInit(this._config.pay_btn_url_dt);
+            this._config.dataTransPay(this._config.pay_btn_url_dt);
         }
     }
 }

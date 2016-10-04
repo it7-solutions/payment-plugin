@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable} from "rxjs/Rx";
 export interface PluginOptions {
     templatesBaseUrl?: string;
     mockAJAX?: boolean;
-    onInit?: (callback: any) => any;
+    dataTransPay?: (callback: any) => any;
     onTranslate?: (code:string, text: string) => any;
     translations: any[];
     terms_conds_text: string;
@@ -37,7 +37,7 @@ export interface PluginOptions {
 export class PluginConfig {
     templatesBaseUrl: string;
     mockAJAX: boolean;
-    onInit: (callback: any) => any;
+    dataTransPay: (callback: any) => any;
     onTranslate: (code:string, text: string) => any;
     translations: any[];
     terms_conds_text: string;
@@ -77,11 +77,11 @@ export class PluginConfig {
 
     public update(options:PluginOptions) {
         console.log('options show_edit_invoice_btn', options.show_edit_invoice_btn);
-        this.templatesBaseUrl = options.templatesBaseUrl;
-        this.mockAJAX = options.mockAJAX;
-        undefined === options.onInit || (this.onInit = typeof options.onInit === 'function' ? options.onInit : () => {});
-        this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
-        this.translations = options.translations;
+        undefined === options.templatesBaseUrl || (this.templatesBaseUrl = options.templatesBaseUrl);
+        undefined === options.mockAJAX || (this.mockAJAX = options.mockAJAX);
+        undefined === options.dataTransPay || (this.dataTransPay = typeof options.dataTransPay === 'function' ? options.dataTransPay : () => {});
+        undefined === options.onTranslate || (this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {});
+        undefined === options.translations || (this.translations = options.translations);
         undefined === options.terms_conds_text || (this.terms_conds_text = options.terms_conds_text);
         undefined === options.payment_types || (this.payment_types = options.payment_types);
         undefined === options.reg_services || (this.reg_services = options.reg_services);
@@ -102,7 +102,7 @@ export class PluginConfig {
         undefined === options.download_receipt_url || (this.download_receipt_url = options.download_receipt_url);
         undefined === options.chosen_online_system || (this.chosen_online_system = options.chosen_online_system);
         undefined === options.chosen_payment_type || (this.chosen_payment_type = options.chosen_payment_type);
-        undefined === options.chosen_reg_service_id || (this.chosen_reg_service_id = options.chosen_reg_service_id);
+        undefined === options.chosen_reg_service_id || (options.chosen_reg_service_id ? this.chosen_reg_service_id = options.chosen_reg_service_id : this.chosen_reg_service_id = '');
         undefined === options.view_step || (this.view_step = options.view_step);
         undefined === options.pay_btn_url_dt || (this.pay_btn_url_dt = options.pay_btn_url_dt);
         undefined === options.pay_btn_url_pp || (this.pay_btn_url_pp = options.pay_btn_url_pp);
