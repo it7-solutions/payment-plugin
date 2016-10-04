@@ -19,8 +19,12 @@
                 .then(function (m) {
                     var options = {
                         mockAJAX: true,
-                        dataTransPay: function () {
-                            console.log('some code goes here');
+                        dataTransPay: function (state) {
+                            if(!state) {
+                                // disable next button
+                            } else {
+                                // enable next button
+                            }
                         },
                         isActiveNext: function (state) {
                             console.log('state', state);
