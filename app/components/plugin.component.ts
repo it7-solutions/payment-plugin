@@ -47,14 +47,17 @@ export class PluginComponent implements OnInit{
     //
 
     isStep1A() {
+        this.pluginConfig.isActiveNext(this.pluginConfig.is_next_button_active);
         return '1a' === this.pluginConfig.view_step;
     }
 
     isStep1B() {
+        this.pluginConfig.isActiveNext(this.pluginConfig.is_next_button_active);
         return '1b' === this.pluginConfig.view_step;
     }
 
     isStep2() {
+        this.pluginConfig.isActiveNext(this.pluginConfig.is_next_button_active);
         return '2' === this.pluginConfig.view_step;
     }
 

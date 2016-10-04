@@ -5,6 +5,7 @@ export interface PluginOptions {
     templatesBaseUrl?: string;
     mockAJAX?: boolean;
     dataTransPay?: (callback: any) => any;
+    isActiveNext?: (callback: any) => any;
     onTranslate?: (code:string, text: string) => any;
     translations: any[];
     terms_conds_text: string;
@@ -38,6 +39,7 @@ export class PluginConfig {
     templatesBaseUrl: string;
     mockAJAX: boolean;
     dataTransPay: (callback: any) => any;
+    isActiveNext: (callback: any) => any;
     onTranslate: (code:string, text: string) => any;
     translations: any[];
     terms_conds_text: string;
@@ -76,10 +78,10 @@ export class PluginConfig {
 
 
     public update(options:PluginOptions) {
-        console.log('options show_edit_invoice_btn', options.show_edit_invoice_btn);
         undefined === options.templatesBaseUrl || (this.templatesBaseUrl = options.templatesBaseUrl);
         undefined === options.mockAJAX || (this.mockAJAX = options.mockAJAX);
         undefined === options.dataTransPay || (this.dataTransPay = typeof options.dataTransPay === 'function' ? options.dataTransPay : () => {});
+        undefined === options.isActiveNext || (this.isActiveNext = typeof options.isActiveNext === 'function' ? options.isActiveNext : () => {});
         undefined === options.onTranslate || (this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {});
         undefined === options.translations || (this.translations = options.translations);
         undefined === options.terms_conds_text || (this.terms_conds_text = options.terms_conds_text);
