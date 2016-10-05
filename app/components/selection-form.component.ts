@@ -107,12 +107,12 @@ export class SelectionForm implements OnInit {
         if(this.checkValid()) {
             this.formOkay.emit(this.info);
 
-            this.fillForm(
-                {
-                    reg_service_id: '',
-                    payment_type: ''
-                }
-            );
+            // this.fillForm(
+            //     {
+            //         reg_service_id: '',
+            //         payment_type: ''
+            //     }
+            // );
 
         }
     }

@@ -16,7 +16,8 @@
         </td>
         <td align="right">
             <button *ngIf="show_form" (click)="onShowForm()">Edit</button>
-            <button *ngIf="!is_invoice" (click)="onValidateInvoice()" [disabled]="!flagForValidate">Validate</button>
+            <button *ngIf="!is_invoice" (click)="onValidateInvoice()" [disabled]="!flagForValidate"
+                    [ngClass]="{'disabled': !flagForValidate}">Validate</button>
         </td>
     </tr>
 </table>
