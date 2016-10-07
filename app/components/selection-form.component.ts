@@ -73,7 +73,7 @@ export class SelectionForm implements OnInit {
             var isFunction = typeof field.isRequired === 'function';
             if(isFunction ? field.isRequired() : field.isRequired) {
                 var value = this.info[fieldName];
-                if('' === value || value === null) {
+                if('' === value || null === value || '0' === value ) {
                     field.isValid = false;
                     field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Please make selection!';
                 }
