@@ -20,12 +20,10 @@ export class PayComponent {
     }
 
     toInvoice() {
-        console.log('invoice');
         window.open(this._config.download_invoice_url, '_blank');
     }
 
     toReceipt() {
-        console.log('receipt');
         window.open(this._config.download_receipt_url, '_blank');
     }
 
@@ -34,12 +32,10 @@ export class PayComponent {
     }
 
     toPay() {
-        console.log('pay');
         var os = this._config.chosen_online_system;
         if(os == 'pp'){
             window.location.href = this._config.pay_btn_url_pp;
         } else if(os == 'dt') {
-            console.log('datatrans');
             this._config.dataTransPay(this._config.pay_btn_url_dt);
         }
     }

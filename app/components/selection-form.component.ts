@@ -102,29 +102,14 @@ export class SelectionForm implements OnInit {
     }
 
     public getInvoiceCall() {
-        console.log('info', this.info);
         this.onValidateFields();
-        console.log('form', this.formValid);
 
         if(this.checkValid()) {
             this.formOkay.emit(this.info);
-
-            // this.fillForm(
-            //     {
-            //         reg_service_id: '',
-            //         payment_type: ''
-            //     }
-            // );
-
         }
     }
 
-    private fillForm(o: any) {
-        Object.assign(this.info, o);
-    }
-
     private sendAjaxCallIfFormFalse() {
-        console.log('form false');
         this.formOkay.emit(this.info);
     }
 
@@ -132,7 +117,6 @@ export class SelectionForm implements OnInit {
         if(!this.show_form) {
             this.sendAjaxCallIfFormFalse();
         } else if(this.show_form) {
-            console.log('show data');
         }
     }
 

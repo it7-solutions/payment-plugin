@@ -32,7 +32,6 @@ export class ConfirmationComponent{
     }
 
     onShowForm() {
-        console.log('config', this._config);
         this.showForm.emit(true);
         this._config.update(this._config);
     }
@@ -42,7 +41,6 @@ export class ConfirmationComponent{
     }
 
     onShowTermsPopUp(event: any) {
-        console.log('show popup');
         event.stopPropagation();
         var popup = new ConfirmPopup('');
         this._requestPopupService.showPopup(popup);

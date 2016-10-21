@@ -39,7 +39,7 @@ export class PluginComponent implements OnInit{
         private pluginConfig: PluginConfig,
         private _dataManager: DataManagerService
     ) {
-        console.log('pluginConfig', pluginConfig);
+        // console.log('pluginConfig', pluginConfig);
     }
 
     //

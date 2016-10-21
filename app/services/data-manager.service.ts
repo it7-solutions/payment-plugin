@@ -21,11 +21,9 @@ export class DataManagerService {
 
 
     getInvoiceRequest(selection: Object){
-        console.log('save request');
         this.showLoading();
         this.selectedData = JSON.stringify(Object.assign({}, selection, {"terms_accept": 1}));
         selection = JSON.stringify(selection);
-        console.log('new data', selection);
         return this.it7Ajax
             .post(this.config.get_invoice_url, {selection: selection})
             .then(
@@ -38,7 +36,6 @@ export class DataManagerService {
     }
 
     cancelInvoiceRequest() {
-        console.log('cancel invoice');
         this.showLoading();
         return this.it7Ajax
             .post(this.config.cancel_invoice_url, {})
@@ -51,7 +48,6 @@ export class DataManagerService {
     }
 
     validateInvoiceRequest() {
-        console.log('validate invoice');
         this.showLoading();
         return this.it7Ajax
             .post(this.config.create_invoice_url, {selection: this.selectedData})
@@ -64,13 +60,11 @@ export class DataManagerService {
     }
 
     private showLoading(){
-        console.log('show loading');
         this.popup = new BusyPopup();
         this.popupService.showPopup(this.popup);
     }
 
     private hideLoading(): any{
-        console.log('hide loading');
         if(this.popup){
             this.popup.visible = false;
             this.popupService.showPopup(this.popup);
