@@ -4,6 +4,7 @@ import {PluginConfig} from "../services/plugin.config";
 import {SelectType} from "../models/select-type";
 import {ConfirmationComponent} from "./confirmation.component";
 import {ValidateField} from "../models/validate";
+import {TranslationsService} from "../services/translations.service";
 
 @Component({
     selector: 'selection-form',
@@ -33,7 +34,8 @@ export class SelectionForm implements OnInit {
     formValid: boolean = true;
 
     constructor(
-        private _config: PluginConfig
+        private _config: PluginConfig,
+        private _translate: TranslationsService
     ) {
         this.reg_services = _config.reg_services;
         this.payment_types = _config.payment_types;
@@ -75,7 +77,7 @@ export class SelectionForm implements OnInit {
                 var value = this.info[fieldName];
                 if('' === value || null === value || '0' === value ) {
                     field.isValid = false;
-                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + 'Please make selection!';
+                    field.messageText = (field.messageText ? field.messageText + '. ' : '') + this._translate.translate('Please make selection!');
                 }
             }
         }

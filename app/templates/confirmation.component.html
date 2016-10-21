@@ -4,6 +4,14 @@
             <div [innerHTML]="invoiceInformation"></div>
         </td>
     </tr>
+    <tr *ngIf="_config.show_bank_details">
+        <td>
+            <div>Bank details: </div>
+        </td>
+        <td>
+            <div>{{_config.bank_details_text}}</div>
+        </td>
+    </tr>
 
     <tr>
         <td>

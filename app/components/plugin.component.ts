@@ -84,7 +84,7 @@ export class PluginComponent implements OnInit{
         this._dataManager.getInvoiceRequest(this.info)
             .then(
                 data => {
-                    this.invoiceInformation = data;
+                    this.invoiceInformation = data.invoice_html;
                     this.pluginConfig.view_step = '1b';
                 }
             );
@@ -98,7 +98,7 @@ export class PluginComponent implements OnInit{
         this._dataManager.getInvoiceRequest(info)
             .then(
                 data => {
-                    this.invoiceInformation = data;
+                    this.invoiceInformation = data.invoice_html;
                     this.pluginConfig.view_step = '2';
                 }
             );

@@ -30,6 +30,7 @@ export class DataManagerService {
             .post(this.config.get_invoice_url, {selection: selection})
             .then(
                 res => {
+                    this.config.update(res);
                     this.hideLoading();
                     return res;
                 }
