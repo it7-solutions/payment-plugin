@@ -103,7 +103,8 @@ export class SelectionForm implements OnInit {
 
     public getInvoiceCall() {
         this.onValidateFields();
-
+        // console.log('formValid', this.checkValid());
+        // console.log('this.info', this.info);
         if(this.checkValid()) {
             this.formOkay.emit(this.info);
         }
