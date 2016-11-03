@@ -52,7 +52,7 @@ export class SelectionForm implements OnInit {
         reg_service_id: {
             isValid: true,
             messageText: '',
-            isRequired: true,
+            isRequired: this._config.show_reg_services,
         },
         payment_type: {
             isValid: true,
@@ -72,8 +72,9 @@ export class SelectionForm implements OnInit {
     private checkRequired() {
         for(var fieldName in this.validateFields) {
             var field:ValidateField = this.validateFields[fieldName];
-            var isFunction = typeof field.isRequired === 'function';
-            if(isFunction ? field.isRequired() : field.isRequired) {
+            // var isFunction = typeof field.isRequired === 'function';
+            // if(isFunction ? field.isRequired() : field.isRequired) {
+            if(field.isRequired) {
                 var value = this.info[fieldName];
                 if('' === value || null === value || '0' === value ) {
                     field.isValid = false;

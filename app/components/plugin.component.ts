@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, enableProdMode } from '@angular/core';
 import {PluginConfig} from "../services/plugin.config";
 import {TranslationsService} from "../services/translations.service";
 import {SelectionForm} from "./selection-form.component";
@@ -11,6 +11,7 @@ import {InformationPopupComponent} from "./information-popup.component";
 import {ConfirmationComponent} from "./confirmation.component";
 import {SelectType} from "../models/select-type";
 import {PayComponent} from "./pay.component";
+enableProdMode();
 @Component({
     selector: 'it7-payment-public-plugin',
     templateUrl: 'app/templates/plugin.component.html',
