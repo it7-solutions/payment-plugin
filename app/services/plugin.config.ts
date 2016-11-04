@@ -34,6 +34,7 @@ export interface PluginOptions {
     pay_btn_url_pp: string;
     bank_details_text: string;
     show_bank_details: boolean;
+    get_invoice: boolean;
 }
 
 @Injectable()
@@ -70,6 +71,7 @@ export class PluginConfig {
     pay_btn_url_pp: string;
     bank_details_text: string;
     show_bank_details: boolean;
+    get_invoice: boolean;
 
     private _onUpdate: BehaviorSubject<PluginConfig>;
     public onUpdate: Observable<PluginConfig>;
@@ -114,6 +116,7 @@ export class PluginConfig {
         undefined === options.pay_btn_url_pp || (this.pay_btn_url_pp = options.pay_btn_url_pp);
         undefined === options.bank_details_text || (this.bank_details_text = options.bank_details_text);
         undefined === options.show_bank_details || (this.show_bank_details = options.show_bank_details);
+        undefined === options.get_invoice || (this.get_invoice = options.get_invoice);
 
         this._onUpdate.next(this);
     }

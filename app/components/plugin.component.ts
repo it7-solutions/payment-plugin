@@ -40,7 +40,7 @@ export class PluginComponent implements OnInit{
         private pluginConfig: PluginConfig,
         private _dataManager: DataManagerService
     ) {
-        // console.log('pluginConfig', pluginConfig);
+        console.log('pluginConfig', pluginConfig);
     }
 
     //
@@ -96,6 +96,7 @@ export class PluginComponent implements OnInit{
             reg_service_id: this.pluginConfig.chosen_reg_service_id,
             payment_type: ''
         };
+        if(this.pluginConfig.get_invoice) {
         this._dataManager.getInvoiceRequest(info)
             .then(
                 data => {
@@ -103,6 +104,7 @@ export class PluginComponent implements OnInit{
                     this.pluginConfig.view_step = '2';
                 }
             );
+        }
     }
 
     onCancelInvoice() {
