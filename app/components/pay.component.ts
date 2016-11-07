@@ -32,13 +32,13 @@ export class PayComponent {
     }
 
     toPay() {
-        console.log('toPay');
+        // console.log('toPay');
         var os = this._config.chosen_online_system;
         if(os == 'pp'){
-            console.log('pp');
+            // console.log('pp');
             window.location.href = this._config.pay_btn_url_pp;
         } else if(os == 'dt') {
-            console.log('dt');
+            // console.log('dt');
             this._config.dataTransPay(this._config.pay_btn_url_dt);
         }
     }
