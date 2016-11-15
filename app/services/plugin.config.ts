@@ -35,6 +35,7 @@ export interface PluginOptions {
     bank_details_text: string;
     show_bank_details: boolean;
     get_invoice: boolean;
+    show_term_conds_for_imprint: boolean;
 }
 
 @Injectable()
@@ -72,6 +73,7 @@ export class PluginConfig {
     bank_details_text: string;
     show_bank_details: boolean;
     get_invoice: boolean;
+    show_term_conds_for_imprint: boolean;
 
     private _onUpdate: BehaviorSubject<PluginConfig>;
     public onUpdate: Observable<PluginConfig>;
@@ -117,6 +119,7 @@ export class PluginConfig {
         undefined === options.bank_details_text || (this.bank_details_text = options.bank_details_text);
         undefined === options.show_bank_details || (this.show_bank_details = options.show_bank_details);
         undefined === options.get_invoice || (this.get_invoice = options.get_invoice);
+        undefined === options.show_term_conds_for_imprint || (this.show_term_conds_for_imprint = options.show_term_conds_for_imprint);
 
         this._onUpdate.next(this);
     }

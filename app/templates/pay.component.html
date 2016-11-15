@@ -8,12 +8,35 @@
 <table width="100%">
     <tr>
         <td>
+            <div *ngIf="_config.show_term_conds_for_imprint">
+                <p [ngClass]="{'hide': flagForValidateImprint}">You need to accept terms and conditions to proceed</p>
+                <input type="checkbox" (change)="changeFlagImprint()">
+                <label>
+                    <a (click)="onShowTermsPopUp($event)">I accept the Payment Terms and Conditions</a>
+                </label>
+            </div>
+        </td>
+    </tr>
+</table>
+<table width="100%">
+    <tr>
+        <td>
             <button *ngIf="_config.show_download_invoice_btn" (click)="toInvoice()">Invoice</button>
             <button *ngIf="_config.show_download_receipt_btn" (click)="toReceipt()">Receipt</button>
-            <button *ngIf="_config.show_pay_btn" (click)="toPay()">PAY</button>
+            <button *ngIf="!_config.show_term_conds_for_imprint && _config.show_pay_btn" (click)="toPay()">PAY</button>
+            <button *ngIf="_config.show_term_conds_for_imprint &&_config.show_pay_btn"
+                    (click)="toPay()"
+                    [disabled]="!flagForValidateImprint"
+                    [ngClass]="{'disabled': !flagForValidateImprint}">PAY</button>
+
         </td>
         <td align="right">
             <button *ngIf="_config.show_edit_invoice_btn" (click)="onCancelInvoice($event)">Cancel Invoice</button>
         </td>
     </tr>
 </table>
+<style>
+    .hide {
+        visibility: hidden;
+    }
+</style>
