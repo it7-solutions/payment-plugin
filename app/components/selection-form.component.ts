@@ -57,7 +57,7 @@ export class SelectionForm implements OnInit {
         payment_type: {
             isValid: true,
             messageText: '',
-            isRequired: true,
+            isRequired: this._config.show_payment_types,
         }
     };
 
