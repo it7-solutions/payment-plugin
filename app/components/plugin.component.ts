@@ -109,12 +109,27 @@ export class PluginComponent implements OnInit{
 
     onCancelInvoice() {
         this._dataManager.cancelInvoiceRequest();
-        this.pluginConfig.view_step = '1a';
+        // this.pluginConfig.view_step = '1a';
     }
 
     ngOnInit() {
         if('2' === this.pluginConfig.view_step) {
             this.getAjaxDataForStep2();
+        }
+        if('1b' === this.pluginConfig.view_step) {
+            var info = {
+                reg_service_id: this.pluginConfig.chosen_reg_service_id,
+                payment_type: ''
+            };
+            if(this.pluginConfig.get_invoice) {
+                this._dataManager.getInvoiceRequest(info)
+                    .then(
+                        data => {
+                            this.invoiceInformation = data.invoice_html;
+                            this.pluginConfig.view_step = '1b';
+                        }
+                    );
+            }
         }
     }
 }
