@@ -11,6 +11,9 @@ import {PopupService} from "./services/popup.service";
 import {DataManagerService} from "./services/data-manager.service";
 import {BusyPopupComponent} from "./components/busy-popup.component";
 import {PaymentAggregateService} from "./services/payment-aggregate.service";
+import {ImprintBlockComponent} from "./components/imprint-block.component";
+import {InvoicesBlockComponent} from "./components/invoices-block.component";
+import {RegistrationInvoiceComponent} from "./components/registration-invoice.component";
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import {PaymentAggregateService} from "./services/payment-aggregate.service";
     declarations: [
         PluginComponent,
         BusyPopupComponent,
+        ImprintBlockComponent,
+        InvoicesBlockComponent,
+        RegistrationInvoiceComponent,
     ],
     bootstrap: [PluginComponent],
     providers: [

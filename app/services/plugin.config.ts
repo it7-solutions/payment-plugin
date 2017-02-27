@@ -3,6 +3,8 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class PluginConfig {
     getDataUrl: string = '';
+    isImprint: boolean = false;
+    setNextStepState: (state: boolean)=> void = ()=> {};
     translations: any[] = [];
 
     constructor(options: any) {

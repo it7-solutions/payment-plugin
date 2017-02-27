@@ -19,8 +19,10 @@
 
         var options = {
             getDataUrl: '/getData',
-            translations: [{code: 'lowercase_snake_', value: 'Lowercase Snake?'}],
-            onTranslate: function(){}
+            isImprint: false,
+            onTranslate: function(){},
+            setNextStepState: function(s){console.log('Set NextStep to ' + (state ? 'true' : 'false'))},
+            translations: [{code: 'lowercase_snake_', value: 'Lowercase Snake?'}]
         };
 
         System.import('app')

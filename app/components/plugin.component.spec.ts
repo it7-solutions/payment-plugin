@@ -32,6 +32,6 @@ describe('PluginComponent with TCB', function () {
 
         h1 = fixture.debugElement.query(By.css('h1')).nativeElement;            // preferred
 
-    expect(h1.innerText).toMatch(/angular app/i, '<h1> should say something about "Angular App"');
+    expect(h1.innerText).toMatch(/payment-public-plugin v2/i, 'Not find <h1>payment-public-plugin v2</h1>');
   });
 });

@@ -4,16 +4,15 @@ import {DataManagerService} from "../services/data-manager.service";
 import {toConsole} from "../modules/debug/to-console";
 
 @Component({
-    selector: 'payment-public-plugin',
-    templateUrl: PluginConfig.buildTemplateUrl('templates/plugin.html')
+    selector: 'invoices-block',
+    templateUrl: PluginConfig.buildTemplateUrl('templates/invoices-block.html')
 })
-export class PluginComponent {
+export class InvoicesBlockComponent {
 
     constructor(
         private config: PluginConfig,
         private dm: DataManagerService
     ) {
-        toConsole('Payment public plugin config', config);
-        dm.updateData();
+
     }
 }

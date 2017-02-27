@@ -1,19 +1,6 @@
-<h2>Inventory public plugin</h2>
+<h1>payment-public-plugin v2</h1>
 
-<div class="tabControl" (click)="onWishesClick()" [ngClass]="{'current': wishesTabVisible}">{{ 'Wishes'|translation }}</div>
-<div class="tabControl" (click)="onOrdersClick()" [ngClass]="{'current': ordersTabVisible}">{{ 'Orders'|translation }}</div>
-
-<wishes *ngIf="wishesTabVisible"></wishes>
-<orders *ngIf="ordersTabVisible"></orders>
-
-<style>
-    .tabControl {
-        cursor: pointer;
-    }
-    .tabControl.current {
-        font-weight: bold;
-    }
-</style>
+<imprint-block *ngIf="config.isImprint"></imprint-block>
+<invoices-block *ngIf="!config.isImprint"></invoices-block>
 
 <busy-popup></busy-popup>
-<details-popup></details-popup>

@@ -4,16 +4,15 @@ import {DataManagerService} from "../services/data-manager.service";
 import {toConsole} from "../modules/debug/to-console";
 
 @Component({
-    selector: 'payment-public-plugin',
-    templateUrl: PluginConfig.buildTemplateUrl('templates/plugin.html')
+    selector: 'imprint-block',
+    templateUrl: PluginConfig.buildTemplateUrl('templates/imprint-block.html')
 })
-export class PluginComponent {
+export class ImprintBlockComponent {
 
     constructor(
         private config: PluginConfig,
         private dm: DataManagerService
     ) {
-        toConsole('Payment public plugin config', config);
-        dm.updateData();
+
     }
 }
