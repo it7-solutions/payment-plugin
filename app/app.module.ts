@@ -14,6 +14,7 @@ import {PaymentAggregateService} from "./services/payment-aggregate.service";
 import {ImprintBlockComponent} from "./components/imprint-block.component";
 import {InvoicesBlockComponent} from "./components/invoices-block.component";
 import {RegistrationInvoiceComponent} from "./components/registration-invoice.component";
+import {ImprintInfoService} from "./services/imprint-info.service";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {RegistrationInvoiceComponent} from "./components/registration-invoice.co
         DataManagerService,
         It7ErrorService,
         It7AjaxService,
-        PaymentAggregateService
+        PaymentAggregateService,
+        ImprintInfoService
     ]
 })
 export class AppModule {

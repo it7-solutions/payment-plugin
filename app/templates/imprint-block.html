@@ -1,1 +1,10 @@
 <h2>Imprint</h2>
+
+<div class="errorMessage" *ngIf="imprint.imprint_message">{{ imprint.imprint_message }}</div>
+<a href="javascript:;" *ngIf="imprint.show_validate_imprint_btn">{{ 'Pay'|translation }}</a>
+
+<style>
+    .errorMessage {
+        color: red;
+    }
+</style>

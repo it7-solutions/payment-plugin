@@ -26,7 +26,7 @@ export class DataManagerService {
         this.showLoading();
         let data = JSON.stringify({});
         return this.it7Ajax
-            .post(this.config.getDataUrl, {data})
+            .post(this.config.get_data_url, {data})
             .then(
                 res => {
                     this.hideLoading();

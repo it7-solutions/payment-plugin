@@ -18,11 +18,17 @@
         window['It7Ng2AppDevelopMode'] = true;
 
         var options = {
-            getDataUrl: '/getData',
-            isImprint: false,
-            onTranslate: function(){},
-            setNextStepState: function(s){console.log('Set NextStep to ' + (state ? 'true' : 'false'))},
-            translations: [{code: 'lowercase_snake_', value: 'Lowercase Snake?'}]
+            get_data_url: '/getData',
+            do_data_trans_pay: function(){console.log('doDataTransPay')},
+            do_imprint_validation: function(){console.log('doImprintValidation')},
+            imprint_info: {
+                imprint_message: 'It\'s a trap!',
+                show_validate_imprint_btn: true
+            },
+            is_imprint: true,
+            set_next_step_state: function(s){console.log('Set NextStep to ' + (state ? 'true' : 'false'))},
+            translations: [{code: 'lowercase_snake_', value: 'Lowercase Snake?'}],
+            onTranslate: function(){}
         };
 
         System.import('app')

@@ -1,10 +1,15 @@
 import {Injectable} from "@angular/core";
+import {ImprintInfoService} from "./imprint-info.service";
+import {ImprintInfo} from "../models/imprint-info";
 
 @Injectable()
 export class PluginConfig {
-    getDataUrl: string = '';
-    isImprint: boolean = false;
-    setNextStepState: (state: boolean)=> void = ()=> {};
+    do_data_trans_pay: ()=> void = ()=> {};
+    do_imprint_validation: ()=> void = ()=> {};
+    get_data_url: string = '';
+    imprint_info: any;
+    is_imprint: boolean = false;
+    set_next_step_state: (state: boolean)=> void = ()=> {};
     translations: any[] = [];
 
     constructor(options: any) {
