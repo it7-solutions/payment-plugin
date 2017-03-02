@@ -10,83 +10,21 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 // HardCode
+var invoices = [];
+var data = {
+    imprint_info: {
+        get_dt_form_url: '/getDTForm',
+        imprint_error_message: '',
+        imprint_message: '',
+        show_validate_imprint_btn: true
+    },
+    invoices: invoices,
+    is_imprint: true
+};
 var requestAnswer = {
     error: 0,
     errorMessage: '',
-    data: {
-        wishes: [
-            {id: '8', article_id: '1', quantity: 10, total: 333, total_formatted: '3.33', locked: true }
-        ],
-        wishes_total: 99900,
-        wishes_total_formatted: '999.00',
-        orders: [
-            // {
-            //     id: '17',
-            //     status: 'new',
-            //     download_invoice_url: 'http://google.com',
-            //     download_receipt_url: 'http://yahoo.com',
-            //     total: 6100,
-            //     total_formatted: '61.00',
-            //     order_status_formatted: "Open",
-            //     invoice_status_formatted: "Not issued"
-            // }
-        ],
-        order_items: [
-            // {
-            //     id: '1',
-            //     article_id: '1',
-            //     article_name: 'Table (OI)',
-            //     price_formatted: "0.10",
-            //     order_id: '17',
-            //     quantity: 1,
-            //     total: 100,
-            //     total_formatted: '1.00'
-            // },
-            // {
-            //     id: '10',
-            //     article_id: '20',
-            //     article_name: 'TV (OI)',
-            //     price_formatted: "9.00",
-            //     order_id: '17',
-            //     quantity: 6,
-            //     total: 6000,
-            //     total_formatted: '60.00'
-            // },
-            // {
-            //     id: '15',
-            //     type: 'custom',
-            //     article_name: 'Custom article name',
-            //     price_formatted: "100.00",
-            //     article_id: null,
-            //     order_id: '17',
-            //     quantity: 1,
-            //     total: 10000,
-            //     total_formatted: '100.00'
-            // },
-            // {
-            //     id: '17',
-            //     type: 'article',
-            //     article_name: 'A-la hidden article',
-            //     price_formatted: "300.00",
-            //     article_id: '999999',
-            //     order_id: '17',
-            //     quantity: 2,
-            //     total: 60000,
-            //     total_formatted: '600.00'
-            // },
-            // {
-            //     id: '18',
-            //     type: 'article',
-            //     article_name: 'For Limited article',
-            //     price_formatted: "1.25",
-            //     article_id: '23',
-            //     order_id: '17',
-            //     quantity: 2,
-            //     total: 250,
-            //     total_formatted: '2.50'
-            // }
-        ]
-    }
+    data: data
 };
 
 
@@ -97,16 +35,28 @@ app.post('/getData', function(req, res) {
     res.status(200).send(JSON.stringify(requestAnswer));
 });
 
-app.post('/changeWish', function(req, res) {
-    var data = req.body.data && JSON.parse(req.body.data);
-    req.body.data && console.log('req.body', JSON.parse(req.body.data));
+app.post('/getDTForm', function(req, res) {
+    var d = req.body.data && JSON.parse(req.body.data);
+    d && console.log('data', d);
 
-    if(data && data.article_id) {
-        requestAnswer.data.wishes = requestAnswer.data.wishes.filter(function(w){ return data.article_id !== w.article_id});
-        requestAnswer.data.wishes.push({id: '1', article_id: data.article_id, quantity: parseInt(data.quantity)})
+    if(true) {
+        // Set random imprint validation result (for next request)
+        if(Math.random() > 0.5) {
+            data.imprint_info.imprint_error_message = 'It\'s a trap!';
+            data.imprint_info.imprint_message = '';
+            data.imprint_info.show_validate_imprint_btn = true;
+        } else {
+            data.imprint_info.imprint_error_message = '';
+            data.imprint_info.imprint_message = 'Successfully validated';
+            data.imprint_info.show_validate_imprint_btn = false;
+        }
     }
 
-    res.status(200).send(JSON.stringify(requestAnswer));
+    res.status(200).send(JSON.stringify({
+        error: 0,
+        errorMessage: '',
+        data: {'something': 'something'}
+    }));
 });
 
 //

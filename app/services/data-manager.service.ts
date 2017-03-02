@@ -35,11 +35,24 @@ export class DataManagerService {
             )
     }
 
+    public getImprintDTForm() {
+        this.showLoading();
+        let data = JSON.stringify({});
+        return this.it7Ajax
+            .post(this.paymentAggregateService.item.imprint_info.get_dt_form_url, {data})
+            .then(
+                res => {
+                    this.hideLoading();
+                    return (res);
+                }
+            )
+    }
+
 
     // -- Private
 
     private checkAndUpdate(res: any){
-        toConsole('DataManagerService.checkAndUpdateList', res);
+        toConsole('DataManagerService.checkAndUpdate', res);
         if (res) {
             this.paymentAggregateService.update(res);
         } else {

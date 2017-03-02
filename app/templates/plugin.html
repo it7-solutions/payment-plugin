@@ -1,6 +1,8 @@
 <h1>payment-public-plugin v2</h1>
 
-<imprint-block *ngIf="config.is_imprint"></imprint-block>
-<invoices-block *ngIf="!config.is_imprint"></invoices-block>
+<div *ngIf="pas.item">
+    <imprint-block *ngIf="pas.item.is_imprint"></imprint-block>
+    <invoices-block *ngIf="!pas.item.is_imprint"></invoices-block>
+</div>
 
 <busy-popup></busy-popup>

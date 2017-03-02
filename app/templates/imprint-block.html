@@ -1,10 +1,23 @@
 <h2>Imprint</h2>
 
-<div class="errorMessage" *ngIf="imprint.imprint_message">{{ imprint.imprint_message }}</div>
-<a href="javascript:;" *ngIf="imprint.show_validate_imprint_btn">{{ 'Pay'|translation }}</a>
+<div class="errorMessage" *ngIf="imprint.imprint_error_message">{{ imprint.imprint_error_message }}</div>
+<div class="successMessage" *ngIf="imprint.imprint_message">{{ imprint.imprint_message }}</div>
+
+<div *ngIf="imprint.show_validate_imprint_btn">
+    <label><input type="checkbox" [(ngModel)]="iAgree">{{ 'I accept payment terms and conditions'|translation }}</label>
+    <br>
+    <a href="javascript:;" (click)="doImprintValidation()" [class.disabled]="!iAgree">{{ 'Pay'|translation }}</a>
+</div>
 
 <style>
     .errorMessage {
         color: red;
+    }
+    .successMessage {
+        color: green;
+    }
+    .disabled {
+        color: #cccccc;
+        cursor: default;
     }
 </style>

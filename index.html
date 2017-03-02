@@ -20,12 +20,7 @@
         var options = {
             get_data_url: '/getData',
             do_data_trans_pay: function(){console.log('doDataTransPay')},
-            do_imprint_validation: function(){console.log('doImprintValidation')},
-            imprint_info: {
-                imprint_message: 'It\'s a trap!',
-                show_validate_imprint_btn: true
-            },
-            is_imprint: true,
+            do_imprint_validation: function(o){console.log('doImprintValidation', o); location.reload(true)},
             set_next_step_state: function(s){console.log('Set NextStep to ' + (state ? 'true' : 'false'))},
             translations: [{code: 'lowercase_snake_', value: 'Lowercase Snake?'}],
             onTranslate: function(){}

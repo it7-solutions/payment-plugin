@@ -5,10 +5,8 @@ import {ImprintInfo} from "../models/imprint-info";
 @Injectable()
 export class PluginConfig {
     do_data_trans_pay: ()=> void = ()=> {};
-    do_imprint_validation: ()=> void = ()=> {};
+    do_imprint_validation: (o:any)=> void = (a)=> {};
     get_data_url: string = '';
-    imprint_info: any;
-    is_imprint: boolean = false;
     set_next_step_state: (state: boolean)=> void = ()=> {};
     translations: any[] = [];
 
