@@ -1,3 +1,5 @@
 <h2>Invoices</h2>
 
-<registration-invoice></registration-invoice>
+<registration-invoice *ngIf="registrationInvoice" [invoice]="registrationInvoice"></registration-invoice>
+
+<resources-invoice *ngFor="let invoice of invoices" [invoice]="invoice"></resources-invoice>

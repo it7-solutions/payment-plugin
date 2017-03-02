@@ -15,6 +15,9 @@ import {ImprintBlockComponent} from "./components/imprint-block.component";
 import {InvoicesBlockComponent} from "./components/invoices-block.component";
 import {RegistrationInvoiceComponent} from "./components/registration-invoice.component";
 import {ImprintInfoService} from "./services/imprint-info.service";
+import {ResourcesInvoiceComponent} from "./components/recources-invoice.component";
+import {DownloadInvoiceButtonComponent} from "./components/download-invoice-button.component";
+import {DownloadReceiptButtonComponent} from "./components/download-receipt-button.component";
 
 
 @NgModule({
@@ -30,6 +33,9 @@ import {ImprintInfoService} from "./services/imprint-info.service";
         ImprintBlockComponent,
         InvoicesBlockComponent,
         RegistrationInvoiceComponent,
+        ResourcesInvoiceComponent,
+        DownloadInvoiceButtonComponent,
+        DownloadReceiptButtonComponent
     ],
     bootstrap: [PluginComponent],
     providers: [

@@ -10,7 +10,32 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 // HardCode
-var invoices = [];
+var invoices = [
+    {
+        download_invoice_url: 'http://google.com',
+        download_receipt_url: 'http://keep.google.com',
+        id: '1',
+        show_download_invoice_btn: true,
+        show_download_receipt_btn: true,
+        type: 'registration'
+    },
+    {
+        download_invoice_url: 'http://google.com',
+        download_receipt_url: 'http://keep.google.com',
+        id: '2',
+        show_download_invoice_btn: false,
+        show_download_receipt_btn: true,
+        type: 'resources'
+    },
+    {
+        download_invoice_url: 'http://google.com',
+        download_receipt_url: 'http://keep.google.com',
+        id: '3',
+        show_download_invoice_btn: true,
+        show_download_receipt_btn: false,
+        type: 'resources'
+    }
+];
 var data = {
     imprint_info: {
         get_dt_form_url: '/getDTForm',
@@ -19,7 +44,7 @@ var data = {
         show_validate_imprint_btn: true
     },
     invoices: invoices,
-    is_imprint: true
+    is_imprint: false
 };
 var requestAnswer = {
     error: 0,

@@ -5,16 +5,9 @@ import {toConsole} from "../modules/debug/to-console";
 import {PaymentInvoice} from "../models/payment-invoice";
 
 @Component({
-    selector: 'registration-invoice',
-    templateUrl: PluginConfig.buildTemplateUrl('templates/registration-invoice.html')
+    selector: 'download-receipt-button',
+    templateUrl: PluginConfig.buildTemplateUrl('templates/download-receipt-button.html')
 })
-export class RegistrationInvoiceComponent {
+export class DownloadReceiptButtonComponent {
     @Input() invoice: PaymentInvoice;
-
-    constructor(
-        private config: PluginConfig,
-        private dm: DataManagerService
-    ) {
-
-    }
 }
