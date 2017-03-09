@@ -18,6 +18,10 @@ import {ImprintInfoService} from "./services/imprint-info.service";
 import {ResourcesInvoiceComponent} from "./components/recources-invoice.component";
 import {DownloadInvoiceButtonComponent} from "./components/download-invoice-button.component";
 import {DownloadReceiptButtonComponent} from "./components/download-receipt-button.component";
+import {PaymentTypeSelectorComponent} from "./components/payment-type-selector.component";
+import {PayButtonComponent} from "./components/pay-button.component";
+import {PayService} from "./services/pay.service";
+import {ValidateButtonComponent} from "./components/validate-button.component";
 
 
 @NgModule({
@@ -35,7 +39,10 @@ import {DownloadReceiptButtonComponent} from "./components/download-receipt-butt
         RegistrationInvoiceComponent,
         ResourcesInvoiceComponent,
         DownloadInvoiceButtonComponent,
-        DownloadReceiptButtonComponent
+        DownloadReceiptButtonComponent,
+        PaymentTypeSelectorComponent,
+        PayButtonComponent,
+        ValidateButtonComponent
     ],
     bootstrap: [PluginComponent],
     providers: [
@@ -44,7 +51,9 @@ import {DownloadReceiptButtonComponent} from "./components/download-receipt-butt
         It7ErrorService,
         It7AjaxService,
         PaymentAggregateService,
-        ImprintInfoService
+        ImprintInfoService,
+        PayService
+
     ]
 })
 export class AppModule {

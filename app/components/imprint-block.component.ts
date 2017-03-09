@@ -7,6 +7,7 @@ import {PaymentAggregateService} from "../services/payment-aggregate.service";
 import {PopupService} from "../services/popup.service";
 import {BusyPopup} from "./busy-popup.component";
 import {PaymentAggregate} from "../models/payment-aggregate";
+import {PayService} from "../services/pay.service";
 
 @Component({
     selector: 'imprint-block',
@@ -20,7 +21,7 @@ export class ImprintBlockComponent {
         private config: PluginConfig,
         private pas: PaymentAggregateService,
         private popupService: PopupService,
-        private dm: DataManagerService
+        private payService: PayService
     ) {
         pas.onUpdate.subscribe(pa => this.updateInfo(pa));
         this.updateInfo(pas.item);
@@ -33,10 +34,7 @@ export class ImprintBlockComponent {
      */
     public doImprintValidation(){
         if(this.iAgree){
-            this.dm.getImprintDTForm().then(d => {
-                this.popupService.showPopup(new BusyPopup());
-                this.config.do_imprint_validation(d);
-            });
+            this.payService.payImprint();
         }
     }
 

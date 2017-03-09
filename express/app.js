@@ -12,27 +12,44 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 // HardCode
 var invoices = [
     {
+        chosen_payment_type: 'bank',
         download_invoice_url: 'http://google.com',
         download_receipt_url: 'http://keep.google.com',
+        get_dt_form_url: '/getInvoiceDTForm',
         id: '1',
+        payment_message: '',
+        online_payment_error_message: 'Payment error - try again!',
         show_download_invoice_btn: true,
         show_download_receipt_btn: true,
+        show_pay_btn: true,
+        show_validate_btn: true,
         type: 'registration'
     },
     {
+        chosen_payment_type: 'cash',
+        chosen_payment_type_formatted: 'Cash',
         download_invoice_url: 'http://google.com',
         download_receipt_url: 'http://keep.google.com',
         id: '2',
+        lock_payment_type: true,
         show_download_invoice_btn: false,
         show_download_receipt_btn: true,
+        show_pay_btn: false,
+        show_validate_btn: false,
         type: 'resources'
     },
     {
+        chosen_payment_type: 'bank2',
         download_invoice_url: 'http://google.com',
         download_receipt_url: 'http://keep.google.com',
+        get_dt_form_url: '/getInvoiceDTForm',
         id: '3',
+        payment_message: 'Success! Gratz!!!',
+        online_payment_error_message: '',
         show_download_invoice_btn: true,
         show_download_receipt_btn: false,
+        show_pay_btn: true,
+        show_validate_btn: false,
         type: 'resources'
     }
 ];
@@ -76,6 +93,17 @@ app.post('/getDTForm', function(req, res) {
             data.imprint_info.show_validate_imprint_btn = false;
         }
     }
+
+    res.status(200).send(JSON.stringify({
+        error: 0,
+        errorMessage: '',
+        data: {'something': 'something'}
+    }));
+});
+
+app.post('/getInvoiceDTForm', function(req, res) {
+    var d = req.body.data && JSON.parse(req.body.data);
+    d && console.log('data', d);
 
     res.status(200).send(JSON.stringify({
         error: 0,

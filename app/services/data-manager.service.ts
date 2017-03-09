@@ -8,6 +8,7 @@ import {PopupService} from "./popup.service";
 import {BusyPopup} from "../components/busy-popup.component";
 import {PaymentAggregateService} from "./payment-aggregate.service";
 import {toConsole} from "../modules/debug/to-console";
+import {PaymentInvoice} from "../models/payment-invoice";
 
 @Injectable()
 export class DataManagerService {
@@ -40,6 +41,32 @@ export class DataManagerService {
         let data = JSON.stringify({});
         return this.it7Ajax
             .post(this.paymentAggregateService.item.imprint_info.get_dt_form_url, {data})
+            .then(
+                res => {
+                    this.hideLoading();
+                    return (res);
+                }
+            )
+    }
+
+    public getInvoiceDTForm(invoice: PaymentInvoice) {
+        this.showLoading();
+        let data = JSON.stringify({});
+        return this.it7Ajax
+            .post(invoice.get_dt_form_url, {data})
+            .then(
+                res => {
+                    this.hideLoading();
+                    return (res);
+                }
+            )
+    }
+
+    public validateInvoice(invoice: PaymentInvoice) {
+        this.showLoading();
+        let data = JSON.stringify({});
+        return this.it7Ajax
+            .post(invoice.get_dt_form_url, {data})
             .then(
                 res => {
                     this.hideLoading();

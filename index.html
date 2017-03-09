@@ -19,7 +19,7 @@
 
         var options = {
             get_data_url: '/getData',
-            do_data_trans_pay: function(){console.log('doDataTransPay')},
+            do_data_trans_pay: function(o){console.log('do_data_trans_pay', o); location.reload(true)},
             do_imprint_validation: function(o){console.log('doImprintValidation', o); location.reload(true)},
             set_next_step_state: function(s){console.log('Set NextStep to ' + (state ? 'true' : 'false'))},
             translations: [{code: 'lowercase_snake_', value: 'Lowercase Snake?'}],

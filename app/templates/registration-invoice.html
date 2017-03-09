@@ -1,4 +1,22 @@
 <h3>Registration Invoice #{{ invoice.id }}</h3>
 
+<div *ngIf="invoice.payment_message" class="success_message">{{ invoice.payment_message }}</div>
+<div *ngIf="invoice.online_payment_error_message" class="error_message">{{ invoice.online_payment_error_message }}</div>
+
+<payment-type-selector [invoice]="invoice"></payment-type-selector>
+<br>
+<br>
+<pay-button [invoice]="invoice"></pay-button>
+<validate-button [invoice]="invoice"></validate-button>
+<br>
 <download-invoice-button [invoice]="invoice"></download-invoice-button>
 <download-receipt-button [invoice]="invoice"></download-receipt-button>
+
+<style>
+    .success_message{
+        color: green;
+    }
+    .error_message{
+        color: red;
+    }
+</style>

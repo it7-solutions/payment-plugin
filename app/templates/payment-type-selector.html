@@ -1,0 +1,6 @@
+<select *ngIf="!invoice.lock_payment_type" [(ngModel)]="invoice.chosen_payment_type">
+    <option value="bank">Bank</option>
+    <option value="cash">Cash</option>
+    <option value="bank2">Bank2</option>
+</select>
+<span *ngIf="invoice.lock_payment_type">{{ invoice.chosen_payment_type_formatted }}</span>
