@@ -1,0 +1,9 @@
+<label><input type="checkbox" [(ngModel)]="aggregate.terms_conds_value" (ngModelChange)="doChangeAgreement()"
+              [disabled]="aggregate.terms_conds_lock">{{ 'I accept payment terms and conditions'|translation }}</label>
+
+<style>
+    .disabled {
+        color: #cccccc;
+        cursor: default;
+    }
+</style>

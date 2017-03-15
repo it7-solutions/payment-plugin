@@ -7,27 +7,26 @@ import {PayService} from "../services/pay.service";
 import {PaymentAggregateService} from "../services/payment-aggregate.service";
 
 @Component({
-    selector: 'pay-button',
-    templateUrl: PluginConfig.buildTemplateUrl('templates/pay-button.html')
+    selector: 'cancel-button',
+    templateUrl: PluginConfig.buildTemplateUrl('templates/cancel-button.html')
 })
-export class PayButtonComponent {
+export class CancelButtonComponent {
     @Input() invoice: PaymentInvoice;
 
     constructor(
         private payService: PayService,
-        private pas: PaymentAggregateService
+        private dm: DataManagerService
     ) {
     }
 
     // Call from template
     /**
-     * If invoice payment process enabled
-     * and user agree terms and conditions
-     * call pay service method for initialize payment process
+     * If invoice cancelling enabled
+     * call cancel invoice method
      */
-    public pay(){
-        if(this.invoice.show_pay_btn && this.pas.item.terms_conds_value){
-            this.payService.payInvoice(this.invoice);
+    public cancel(){
+        if(this.invoice.show_cancel_btn){
+            this.dm.cancelInvoice(this.invoice);
         }
     }
 

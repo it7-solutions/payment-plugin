@@ -1,0 +1,3 @@
+<select *ngIf="invoice.show_choose_services" [(ngModel)]="invoice.chosen_service_id" (ngModelChange)="changeService()">
+    <option *ngFor="let item of invoice.services" value="{{ item.id }}">{{ item.name }}</option>
+</select>

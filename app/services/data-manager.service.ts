@@ -25,9 +25,9 @@ export class DataManagerService {
 
     public updateData() {
         this.showLoading();
-        let data = JSON.stringify({});
+        let data = this.prepareRequestData({base_layout_id: this.config.base_layout_id});
         return this.it7Ajax
-            .post(this.config.get_data_url, {data})
+            .post(this.config.init_url, {data})
             .then(
                 res => {
                     this.hideLoading();
@@ -38,7 +38,7 @@ export class DataManagerService {
 
     public getImprintDTForm() {
         this.showLoading();
-        let data = JSON.stringify({});
+        let data = this.prepareRequestData({});
         return this.it7Ajax
             .post(this.paymentAggregateService.item.imprint_info.get_dt_form_url, {data})
             .then(
@@ -51,7 +51,7 @@ export class DataManagerService {
 
     public getInvoiceDTForm(invoice: PaymentInvoice) {
         this.showLoading();
-        let data = JSON.stringify({});
+        let data = this.prepareRequestData(invoice);
         return this.it7Ajax
             .post(invoice.get_dt_form_url, {data})
             .then(
@@ -64,9 +64,9 @@ export class DataManagerService {
 
     public validateInvoice(invoice: PaymentInvoice) {
         this.showLoading();
-        let data = JSON.stringify({});
+        let data = this.prepareRequestData(invoice);
         return this.it7Ajax
-            .post(invoice.get_dt_form_url, {data})
+            .post(invoice.create_invoice_url, {data})
             .then(
                 res => {
                     this.hideLoading();
@@ -75,8 +75,56 @@ export class DataManagerService {
             )
     }
 
+    public setAgree() {
+        this.showLoading();
+        let data = this.prepareRequestData({
+            terms_conds_value: this.paymentAggregateService.item.terms_conds_value
+        });
+        return this.it7Ajax
+            .post(this.config.terms_conds_url, {data})
+            .then(
+                res => {
+                    this.hideLoading();
+                    this.checkAndUpdate(res);
+                }
+            )
+    }
+
+    public cancelInvoice(invoice: PaymentInvoice) {
+        this.showLoading();
+        let data = this.prepareRequestData(invoice);
+        return this.it7Ajax
+            .post(invoice.cancel_invoice_url, {data})
+            .then(
+                res => {
+                    this.hideLoading();
+                    this.checkAndUpdate(res);
+                }
+            )
+    }
+
+    public changeInvoice(invoice: PaymentInvoice) {
+        this.showLoading();
+        let data = this.prepareRequestData(invoice);
+        return this.it7Ajax
+            .post(invoice.change_invoice_url, {data})
+            .then(
+                res => {
+                    this.hideLoading();
+                    this.checkAndUpdate(res);
+                }
+            )
+    }
+
 
     // -- Private
+
+    private prepareRequestData(requestData: any): string {
+        return JSON.stringify({
+            'dynamic_data': this.paymentAggregateService.item,
+            'params_data': requestData
+        });
+    }
 
     private checkAndUpdate(res: any){
         toConsole('DataManagerService.checkAndUpdate', res);

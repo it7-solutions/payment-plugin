@@ -5,6 +5,7 @@ import {toConsole} from "../modules/debug/to-console";
 import {PaymentAggregateService} from "../services/payment-aggregate.service";
 import {PaymentAggregate} from "../models/payment-aggregate";
 import {PaymentInvoice} from "../models/payment-invoice";
+import {PaymentRegistrationInvoice} from "../models/payment-registration-invoice";
 
 @Component({
     selector: 'invoices-block',
@@ -12,7 +13,7 @@ import {PaymentInvoice} from "../models/payment-invoice";
 })
 export class InvoicesBlockComponent {
     public pa: PaymentAggregate;
-    public registrationInvoice: PaymentInvoice;
+    public registrationInvoice: PaymentRegistrationInvoice;
     public invoices: PaymentInvoice[];
 
     constructor(
@@ -26,7 +27,7 @@ export class InvoicesBlockComponent {
 
     private onAggregateUpdate(pa: PaymentAggregate) {
         this.pa = pa;
-        this.registrationInvoice = pa.invoices.find(i => 'registration' === i.type);
+        this.registrationInvoice = pa.invoices.find(i => 'registration' === i.type) as PaymentRegistrationInvoice;
         this.invoices = pa.invoices.filter(i => 'registration' !== i.type);
     }
 }

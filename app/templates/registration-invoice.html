@@ -5,9 +5,11 @@
 
 <payment-type-selector [invoice]="invoice"></payment-type-selector>
 <br>
+<registration-invoice-information [invoice]="invoice"></registration-invoice-information>
 <br>
 <pay-button [invoice]="invoice"></pay-button>
 <validate-button [invoice]="invoice"></validate-button>
+<cancel-button [invoice]="invoice"></cancel-button>
 <br>
 <download-invoice-button [invoice]="invoice"></download-invoice-button>
 <download-receipt-button [invoice]="invoice"></download-receipt-button>

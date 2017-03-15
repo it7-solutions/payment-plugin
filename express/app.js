@@ -12,13 +12,26 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 // HardCode
 var invoices = [
     {
+        cancel_invoice_url: '/cancelInvoice',
+        change_invoice_url: '/changeInvoice',
         chosen_payment_type: 'bank',
+        chosen_service_id: 2,
+        create_invoice_url: '/createInvoice',
         download_invoice_url: 'http://google.com',
         download_receipt_url: 'http://keep.google.com',
         get_dt_form_url: '/getInvoiceDTForm',
         id: '1',
-        payment_message: '',
+        is_datatrans: true,
         online_payment_error_message: 'Payment error - try again!',
+        pay_pp_url: '/',
+        payment_message: '',
+        services: [
+            {id:1, name:'Service 1'},
+            {id:2, name:'Service 2'},
+            {id:3, name:'Service 3'}
+        ],
+        show_cancel_btn: true,
+        show_choose_services: true,
         show_download_invoice_btn: true,
         show_download_receipt_btn: true,
         show_pay_btn: true,
@@ -26,12 +39,19 @@ var invoices = [
         type: 'registration'
     },
     {
+        cancel_invoice_url: '/cancelInvoice',
+        change_invoice_url: '/changeInvoice',
         chosen_payment_type: 'cash',
         chosen_payment_type_formatted: 'Cash',
+        create_invoice_url: '/createInvoice',
         download_invoice_url: 'http://google.com',
         download_receipt_url: 'http://keep.google.com',
+        get_dt_form_url: '/getInvoiceDTForm',
         id: '2',
+        is_datatrans: true,
         lock_payment_type: true,
+        pay_pp_url: '/',
+        show_cancel_btn: false,
         show_download_invoice_btn: false,
         show_download_receipt_btn: true,
         show_pay_btn: false,
@@ -39,13 +59,19 @@ var invoices = [
         type: 'resources'
     },
     {
-        chosen_payment_type: 'bank2',
+        cancel_invoice_url: '/cancelInvoice',
+        change_invoice_url: '/changeInvoice',
+        chosen_payment_type: 'data_trans',
+        create_invoice_url: '/createInvoice',
         download_invoice_url: 'http://google.com',
         download_receipt_url: 'http://keep.google.com',
         get_dt_form_url: '/getInvoiceDTForm',
         id: '3',
+        is_datatrans: false,
+        pay_pp_url: '/',
         payment_message: 'Success! Gratz!!!',
         online_payment_error_message: '',
+        show_cancel_btn: true,
         show_download_invoice_btn: true,
         show_download_receipt_btn: false,
         show_pay_btn: true,
@@ -61,7 +87,9 @@ var data = {
         show_validate_imprint_btn: true
     },
     invoices: invoices,
-    is_imprint: false
+    is_imprint: false,
+    terms_conds_lock: false,
+    terms_conds_value: false
 };
 var requestAnswer = {
     error: 0,
@@ -110,6 +138,38 @@ app.post('/getInvoiceDTForm', function(req, res) {
         errorMessage: '',
         data: {'something': 'something'}
     }));
+});
+
+app.post('/setAgree', function(req, res) {
+    var d = req.body.data && JSON.parse(req.body.data);
+    d && console.log('data', d);
+
+    requestAnswer.data.terms_conds_value = d.params_data.terms_conds_value;
+    res.status(200).send(JSON.stringify(requestAnswer));
+});
+
+app.post('/cancelInvoice', function(req, res) {
+    var d = req.body.data && JSON.parse(req.body.data);
+    d && console.log('data', d);
+
+    requestAnswer.data.invoices.map(function(i){i.show_cancel_btn = false});
+    res.status(200).send(JSON.stringify(requestAnswer));
+});
+
+app.post('/changeInvoice', function(req, res) {
+    var d = req.body.data && JSON.parse(req.body.data);
+    d && console.log('data', d);
+
+    requestAnswer.data = d.dynamic_data;
+    res.status(200).send(JSON.stringify(requestAnswer));
+});
+
+app.post('/createInvoice', function(req, res) {
+    var d = req.body.data && JSON.parse(req.body.data);
+    d && console.log('data', d);
+
+    requestAnswer.data = d.dynamic_data;
+    res.status(200).send(JSON.stringify(requestAnswer));
 });
 
 //

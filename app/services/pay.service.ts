@@ -31,11 +31,16 @@ export class PayService {
     }
 
     public payInvoice(invoice: PaymentInvoice) {
-        toConsole('Pay Invoice #' + invoice.id);
-        this.dm.getInvoiceDTForm(invoice).then(d => {
-            this.popupService.showPopup(new BusyPopup());
-            this.config.do_data_trans_pay(d);
-        });
+        if(invoice.is_datatrans){
+            toConsole('Pay Invoice by datatrans');
+            this.dm.getInvoiceDTForm(invoice).then(d => {
+                this.popupService.showPopup(new BusyPopup());
+                this.config.do_data_trans_pay(d);
+            });
+        } else {
+            toConsole('Pay Invoice by paypal');
+            this.config.do_pay_pal_pay(invoice.pay_pp_url);
+        }
     }
 }
 

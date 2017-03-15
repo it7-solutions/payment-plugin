@@ -4,9 +4,9 @@
 <div class="successMessage" *ngIf="imprint.imprint_message">{{ imprint.imprint_message }}</div>
 
 <div *ngIf="imprint.show_validate_imprint_btn">
-    <label><input type="checkbox" [(ngModel)]="iAgree">{{ 'I accept payment terms and conditions'|translation }}</label>
+    <i-agree [aggregate]="pas.item"></i-agree>
     <br>
-    <a href="javascript:;" (click)="doImprintValidation()" [class.disabled]="!iAgree">{{ 'Pay'|translation }}</a>
+    <a href="javascript:;" (click)="doImprintValidation()" [class.disabled]="!pas.item.terms_conds_value">{{ 'Pay'|translation }}</a>
 </div>
 
 <style>

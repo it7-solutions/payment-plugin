@@ -18,10 +18,18 @@
         window['It7Ng2AppDevelopMode'] = true;
 
         var options = {
-            get_data_url: '/getData',
+            base_layout_id: '123456789',
             do_data_trans_pay: function(o){console.log('do_data_trans_pay', o); location.reload(true)},
-            do_imprint_validation: function(o){console.log('doImprintValidation', o); location.reload(true)},
+            do_imprint_validation: function(o){console.log('do_imprint_validation', o); location.reload(true)},
+            do_pay_pal_pay: function(o){console.log('do_pay_pal_pay', o); location.href = o},
+            init_url: '/getData',
+            payment_types: [
+                {input: 'bank', output: 'Bank'},
+                {input: 'cash', output: 'Cash'},
+                {input: 'data_trans', output: 'DataTrans'}
+            ],
             set_next_step_state: function(s){console.log('Set NextStep to ' + (state ? 'true' : 'false'))},
+            terms_conds_url: '/setAgree',
             translations: [{code: 'lowercase_snake_', value: 'Lowercase Snake?'}],
             onTranslate: function(){}
         };

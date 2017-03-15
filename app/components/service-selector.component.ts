@@ -3,13 +3,14 @@ import {PluginConfig} from "../services/plugin.config";
 import {DataManagerService} from "../services/data-manager.service";
 import {toConsole} from "../modules/debug/to-console";
 import {PaymentInvoice} from "../models/payment-invoice";
+import {PaymentRegistrationInvoice} from "../models/payment-registration-invoice";
 
 @Component({
-    selector: 'payment-type-selector',
-    templateUrl: PluginConfig.buildTemplateUrl('templates/payment-type-selector.html')
+    selector: 'service-selector',
+    templateUrl: PluginConfig.buildTemplateUrl('templates/service-selector.html')
 })
-export class PaymentTypeSelectorComponent {
-    @Input() invoice: PaymentInvoice;
+export class ServiceSelectorComponent {
+    @Input() invoice: PaymentRegistrationInvoice;
 
     constructor(
         private config: PluginConfig,
@@ -19,11 +20,11 @@ export class PaymentTypeSelectorComponent {
     }
 
     /**
-     * If enable changing payment type
+     * If allowed changing service
      * call method for save changes
      */
-    public changeType() {
-        if(!this.invoice.lock_payment_type){
+    public changeService() {
+        if(this.invoice.show_choose_services){
             this.dm.changeInvoice(this.invoice);
         }
     }

@@ -15,13 +15,9 @@ import {PayService} from "../services/pay.service";
 })
 export class ImprintBlockComponent {
     public imprint: ImprintInfo;
-    public iAgree: boolean = false;
 
-    constructor(
-        private config: PluginConfig,
-        private pas: PaymentAggregateService,
-        private popupService: PopupService,
-        private payService: PayService
+    constructor(public pas: PaymentAggregateService,
+                private payService: PayService
     ) {
         pas.onUpdate.subscribe(pa => this.updateInfo(pa));
         this.updateInfo(pas.item);
@@ -33,7 +29,7 @@ export class ImprintBlockComponent {
      * and call external JS-method (method must reload page anyway)
      */
     public doImprintValidation(){
-        if(this.iAgree){
+        if(this.pas.item.terms_conds_value){
             this.payService.payImprint();
         }
     }

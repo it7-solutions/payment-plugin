@@ -1,0 +1,20 @@
+<div>Registration invoices information</div>
+<table>
+    <tr>
+        <th>{{ 'Title'|translation }}</th>
+        <th>{{ 'Quantity'|translation }}</th>
+        <th>{{ 'Cost'|translation }}</th>
+    </tr>
+    <tr>
+        <td>
+            <service-selector *ngIf="invoice.show_choose_services" [invoice]="invoice"></service-selector>
+            <span *ngIf="!invoice.show_choose_services">?????? ?? ??????? ?????!!!</span>
+        </td>
+        <td>?</td>
+        <td>?'???.??</td>
+    </tr>
+    <tr>
+        <td colspan="2">{{ 'Total'|translation }}</td>
+        <td>?'???.??</td>
+    </tr>
+</table>

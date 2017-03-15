@@ -1,1 +1,9 @@
-<a *ngIf="invoice.show_pay_btn" (click)="pay()" href="javascript:;">{{ 'Pay'|translation }}</a>
+<a *ngIf="invoice.show_pay_btn" (click)="pay()" href="javascript:;"
+   [class.disabled]="!pas.item.terms_conds_value">{{ 'Pay'|translation }}</a>
+
+<style>
+    .disabled {
+        color: #bbbbbb;
+        cursor: default;
+    }
+</style>
