@@ -70,6 +70,7 @@ export class DataManagerService {
             .then(
                 res => {
                     this.hideLoading();
+                    this.checkAndUpdate(res);
                     return (res);
                 }
             )
