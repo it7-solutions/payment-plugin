@@ -38,7 +38,7 @@ export class DataManagerService {
 
     public getImprintDTForm() {
         this.showLoading();
-        let data = this.prepareRequestData({});
+        let data = this.prepareRequestData(this.paymentAggregateService.item.imprint_info);
         return this.it7Ajax
             .post(this.paymentAggregateService.item.imprint_info.get_dt_form_url, {data})
             .then(
