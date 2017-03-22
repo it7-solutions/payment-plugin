@@ -16,6 +16,7 @@ export class PluginConfig {
     init_url: string = '';
     payment_types: DictionaryItem[] = [];
     set_next_step_state: (state: boolean)=> void = ()=> {};
+    terms_conds: string;
     terms_conds_url: string = '';
     translations: any[] = [];
 

@@ -27,6 +27,7 @@ import {ResourcesInvoiceInformationComponent} from "./components/resources-invoi
 import {IAgreeComponent} from "./components/i-agree.component";
 import {ServiceSelectorComponent} from "./components/service-selector.component";
 import {CancelButtonComponent} from "./components/cancel-button.component";
+import {TermsPopupComponent} from "./components/terms-popup.component";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {CancelButtonComponent} from "./components/cancel-button.component";
         ResourcesInvoiceInformationComponent,
         IAgreeComponent,
         ServiceSelectorComponent,
-        CancelButtonComponent
+        CancelButtonComponent,
+        TermsPopupComponent
     ],
     bootstrap: [PluginComponent],
     providers: [

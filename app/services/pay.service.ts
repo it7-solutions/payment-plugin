@@ -25,7 +25,7 @@ export class PayService {
     public payImprint() {
         toConsole('Pay IMPRINT');
         this.dm.getImprintDTForm().then(d => {
-            this.popupService.showPopup(new BusyPopup());
+            //this.popupService.showPopup(new BusyPopup());
             this.config.do_imprint_validation(d);
         });
     }
@@ -34,7 +34,7 @@ export class PayService {
         if(invoice.is_datatrans){
             toConsole('Pay Invoice by datatrans');
             this.dm.getInvoiceDTForm(invoice).then(d => {
-                this.popupService.showPopup(new BusyPopup());
+                //this.popupService.showPopup(new BusyPopup());
                 this.config.do_data_trans_pay(d);
             });
         } else {

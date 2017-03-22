@@ -8,6 +8,7 @@ import {PopupService} from "../services/popup.service";
 import {BusyPopup} from "./busy-popup.component";
 import {PaymentAggregate} from "../models/payment-aggregate";
 import {PayService} from "../services/pay.service";
+import {TermsPopup} from "./terms-popup.component";
 
 @Component({
     selector: 'i-agree',
@@ -18,7 +19,8 @@ export class IAgreeComponent {
 
     constructor(
                 private config: PluginConfig,
-                private dm: DataManagerService
+                private dm: DataManagerService,
+                private popupService: PopupService
     ) {
     }
 
@@ -29,5 +31,9 @@ export class IAgreeComponent {
         if (!this.aggregate.terms_conds_lock) {
             this.dm.setAgree();
         }
+    }
+
+    public showTermsAndConditions() {
+        this.popupService.showPopup(new TermsPopup(true, this.config.terms_conds))
     }
 }
