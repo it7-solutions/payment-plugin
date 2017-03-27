@@ -12,7 +12,7 @@ export class PluginConfig {
     base_layout_id: string = '';
     do_data_trans_pay: (o:any)=> void = (a)=> {};
     do_imprint_validation: (o:any)=> void = (a)=> {};
-    do_pay_pal_pay: (o:any)=> void = (a)=> {};
+    do_pay_pal_pay: (o:any, url: string)=> void = (a)=> {};
     init_url: string = '';
     payment_types: DictionaryItem[] = [];
     set_next_step_state: (state: boolean)=> void = ()=> {};

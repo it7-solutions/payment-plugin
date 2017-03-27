@@ -19,7 +19,7 @@ export class DataManagerService {
         private err: It7ErrorService,
         private it7Ajax: It7AjaxService,
         private popupService: PopupService,
-        private paymentAggregateService: PaymentAggregateService,
+        private paymentAggregateService: PaymentAggregateService
     ){
     }
 
@@ -60,6 +60,13 @@ export class DataManagerService {
                     return (res);
                 }
             )
+    }
+
+    public payByPayPal(invoice: PaymentInvoice, url: string) {
+        this.showLoading();
+        let data = this.prepareRequestData(invoice);
+        this.config.do_pay_pal_pay(data, url);
+        this.hideLoading();
     }
 
     public validateInvoice(invoice: PaymentInvoice) {

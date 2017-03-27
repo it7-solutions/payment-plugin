@@ -39,7 +39,7 @@ export class PayService {
             });
         } else {
             toConsole('Pay Invoice by paypal');
-            this.config.do_pay_pal_pay(invoice.pay_pp_url);
+            this.dm.payByPayPal(invoice, invoice.pay_pp_url);
         }
     }
 }

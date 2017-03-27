@@ -21,7 +21,11 @@
             base_layout_id: '123456789',
             do_data_trans_pay: function(o){console.log('do_data_trans_pay', o); location.reload(true)},
             do_imprint_validation: function(o){console.log('do_imprint_validation', o); location.reload(true)},
-            do_pay_pal_pay: function(o){console.log('do_pay_pal_pay', o); location.href = o},
+            do_pay_pal_pay: function(o, url){
+                console.log('o', o);
+                console.log('url', url);
+                // now we can post the form
+            },
             init_url: '/getData',
             payment_types: [
                 {input: 'bank', output: 'Bank'},
