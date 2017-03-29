@@ -15,13 +15,14 @@ export class PaymentInvoice {
     lock_payment_type: boolean = false;
     payment_message: string = '';
     online_payment_error_message: string = '';
-    pay_pp_url:string = ''
+    pay_pp_url:string = '';
     show_cancel_btn: boolean = false;
     show_download_invoice_btn: boolean = false;
     show_download_receipt_btn: boolean = false;
     show_pay_btn: boolean = false;
     show_validate_btn: boolean = false;
     type: string = '';
+    currency_short_name: string = '';
 
     constructor(srcData: any) {
         Object.assign(this, srcData);

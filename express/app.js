@@ -36,7 +36,8 @@ var invoices = [
         show_download_receipt_btn: true,
         show_pay_btn: true,
         show_validate_btn: true,
-        type: 'registration'
+        type: 'registration',
+        currency_short_name: 'CHF'
     },
     {
         cancel_invoice_url: '/cancelInvoice',
