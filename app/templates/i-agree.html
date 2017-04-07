@@ -1,5 +1,5 @@
-<label><input type="checkbox" [(ngModel)]="aggregate.terms_conds_value" (ngModelChange)="doChangeAgreement()"
-              [disabled]="aggregate.terms_conds_lock">
+<label *ngIf="aggregate.show_terms_conds"><input type="checkbox" [(ngModel)]="aggregate.terms_conds_value"
+         (ngModelChange)="doChangeAgreement()" [disabled]="aggregate.terms_conds_lock">
     <a href="javascript:;" (click)="showTermsAndConditions()">{{ 'I accept payment terms and conditions'|translation }}</a>
 </label>
 

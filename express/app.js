@@ -89,6 +89,7 @@ var data = {
     },
     invoices: invoices,
     is_imprint: false,
+    show_terms_conds: false,
     terms_conds_lock: false,
     terms_conds_value: false
 };
