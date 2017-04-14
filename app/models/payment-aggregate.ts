@@ -8,6 +8,8 @@ export class PaymentAggregate {
     is_imprint: boolean = false;
     terms_conds_lock: boolean = false;
     terms_conds_value: boolean = false;
+    show_terms_conds: boolean = false;
+
 
     constructor(srcData: PaymentAggregate) {
         Object.assign(this, srcData);

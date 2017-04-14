@@ -1,3 +1,4 @@
+<label [ngClass]="{'hidden': aggregate.terms_conds_value}">You need to accept terms and conditions to proceed</label><br>
 <label><input type="checkbox" [(ngModel)]="aggregate.terms_conds_value" (ngModelChange)="doChangeAgreement()"
               [disabled]="aggregate.terms_conds_lock">
     <a href="javascript:;" (click)="showTermsAndConditions()">{{ 'I accept payment terms and conditions'|translation }}</a>
@@ -7,5 +8,8 @@
     .disabled {
         color: #cccccc;
         cursor: default;
+    }
+    .hidden {
+        display: none;
     }
 </style>
