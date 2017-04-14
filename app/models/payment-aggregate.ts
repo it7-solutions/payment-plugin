@@ -6,9 +6,10 @@ export class PaymentAggregate {
     imprint_info: ImprintInfo;
     invoices: PaymentInvoice[] = [];
     is_imprint: boolean = false;
+    show_terms_conds: boolean = false;
     terms_conds_lock: boolean = false;
     terms_conds_value: boolean = false;
-    show_terms_conds: boolean = false;
+    show_bank_details: boolean = false;
 
 
     constructor(srcData: PaymentAggregate) {
