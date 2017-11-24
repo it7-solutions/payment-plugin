@@ -17,7 +17,8 @@ export class ImprintBlockComponent {
     public imprint: ImprintInfo;
 
     constructor(public pas: PaymentAggregateService,
-                private payService: PayService
+                private payService: PayService,
+                private config: PluginConfig
     ) {
         pas.onUpdate.subscribe(pa => this.updateInfo(pa));
         this.updateInfo(pas.item);

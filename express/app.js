@@ -88,7 +88,7 @@ var data = {
         show_validate_imprint_btn: true
     },
     invoices: invoices,
-    is_imprint: false,
+    is_imprint: true,
     show_terms_conds: false,
     terms_conds_lock: false,
     terms_conds_value: false
