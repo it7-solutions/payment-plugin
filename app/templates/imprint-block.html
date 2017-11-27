@@ -3,7 +3,8 @@
 <div class="errorMessage" *ngIf="imprint.imprint_error_message">{{ imprint.imprint_error_message }}</div>
 <div class="successMessage" *ngIf="imprint.imprint_message">{{ imprint.imprint_message }}</div>
 
-<div *ngIf="imprint.show_validate_imprint_btn">
+<div>
+<div *ngIf="pas.item.is_imprint" [innerHTML]="cc_imprint_text_safeHtml"></div>
     <i-agree [aggregate]="pas.item"></i-agree>
     <br>
     <a href="javascript:;" (click)="doImprintValidation()" [class.disabled]="!pas.item.terms_conds_value">{{ 'Pay'|translation }}</a>

@@ -8,6 +8,7 @@ import {PopupService} from "../services/popup.service";
 import {BusyPopup} from "./busy-popup.component";
 import {PaymentAggregate} from "../models/payment-aggregate";
 import {PayService} from "../services/pay.service";
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Component({
     selector: 'imprint-block',
@@ -18,7 +19,8 @@ export class ImprintBlockComponent {
 
     constructor(public pas: PaymentAggregateService,
                 private payService: PayService,
-                private config: PluginConfig
+                private config: PluginConfig,
+                private _sanitizer: DomSanitizer
     ) {
         pas.onUpdate.subscribe(pa => this.updateInfo(pa));
         this.updateInfo(pas.item);
@@ -37,5 +39,9 @@ export class ImprintBlockComponent {
 
     private updateInfo(paymentAggregate: PaymentAggregate){
         this.imprint = paymentAggregate.imprint_info;
+    }
+
+    public get cc_imprint_text_safeHtml() : SafeHtml {
+        return this._sanitizer.bypassSecurityTrustHtml(this.config.cc_imprint_text);
     }
 }

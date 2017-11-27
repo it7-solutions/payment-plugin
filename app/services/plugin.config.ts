@@ -19,6 +19,7 @@ export class PluginConfig {
     terms_conds: string;
     terms_conds_url: string = '';
     translations: any[] = [];
+    cc_imprint_text: any = '';
 
     constructor(options: any) {
         Object.assign(this, options);
