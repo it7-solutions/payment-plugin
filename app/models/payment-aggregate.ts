@@ -21,6 +21,9 @@ export class PaymentAggregate {
         if(srcData['invoices'] && Array.isArray(srcData['invoices'])){
             this.invoices = (srcData['invoices'] as Array<any>).map(i => {
                 let invoice: PaymentInvoice;
+                if (i['chosen_payment_type'] === null) {
+                    i['chosen_payment_type'] = '';
+                }
                 switch (i['type']){
                     case 'registration':
                         invoice = new PaymentRegistrationInvoice(i);
